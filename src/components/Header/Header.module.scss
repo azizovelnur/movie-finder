@@ -1,0 +1,60 @@
+.header {
+  background-color: #141414;
+  font-family: 'Lato', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  color: white;
+
+  .header__wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 70px;
+
+    .logo {
+      display: flex;
+      align-items: center;
+
+      &__link {
+        animation: linear 7s animateLogo infinite;
+      }
+
+      &__image * {
+        color: #ffbe32;
+        fill: #ffbe32;
+
+        &:hover * {
+          fill: gold;
+        }
+      }
+    }
+
+    @keyframes animateLogo {
+      0% {
+        top: 0;
+        left: 0;
+        transform: rotate(360deg);
+      }
+    }
+
+
+
+
+    .menu {
+      &__items {
+        display: flex;
+      }
+
+      &__item {
+        opacity: 0.8;
+        cursor: pointer;
+        margin-left: 20px;
+
+        &:hover {
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+}

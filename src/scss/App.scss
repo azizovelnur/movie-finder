@@ -1,0 +1,13 @@
+@import "reset";
+@import "variables";
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans&display=swap');
+body {
+  background-color: $backgroundColor;
+  color: white;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 1200px;
+}
+

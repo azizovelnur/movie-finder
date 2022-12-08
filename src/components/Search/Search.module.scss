@@ -1,0 +1,32 @@
+.search {
+  position: relative;
+
+  &__find {
+    position: absolute;
+    height: 26px;
+    width: 26px;
+    color: white;
+    opacity: 0.7;
+    top: 4px;
+    left: 6px;
+  }
+
+
+  &__input {
+    padding: 12px 20px 12px 42px;
+    width: 380px;
+    height: 38px;
+    border-radius: 10px;
+    outline: none;
+
+    &:hover {
+      border: 1px solid gold;
+    }
+
+    &:focus {
+
+      box-shadow: 8px 6px 28px -3px rgba(255, 137, 55, 0.65);
+    }
+  }
+
+}

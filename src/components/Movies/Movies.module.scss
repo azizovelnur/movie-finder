@@ -1,0 +1,49 @@
+.movies {
+
+  &__items {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .item {
+    position: relative;
+    border-radius: 10%;
+    background-color: #949494;
+    width: 150px;
+    height: 220px;
+    margin: 30px 10px;
+
+    &__img {
+      border-radius: 6px;
+      width: 100%;
+      height: 100%;
+    }
+
+    &__title {
+      font-size: 12px;
+      text-align: center;
+    }
+
+    &__rating {
+      position: absolute;
+      text-align: center;
+      line-height: 40px;
+      width: 40px;
+      height: 40px;
+      border-radius: 100%;
+      background-color: #523443;
+      right: 4px;
+      top: 4px;
+    }
+
+    &__watchListBtn {
+      cursor: pointer;
+      border-radius: 5px;
+      background-color: crimson;
+      display: block;
+      margin: 0 auto;
+    }
+
+  }
+
+}
