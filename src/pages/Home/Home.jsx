@@ -4,17 +4,36 @@ import {useDispatch, useSelector} from "react-redux";
 import {fetchMovies} from "../../redux/movieSlice/movieSlice";
 import Movies from "../../components/Movies/Movies";
 import MoviesStyle from '../../components/Movies/Movies.module.scss'
+import sliderStyle from '../../components/MoviesSlider/MovieSlider.module.scss'
+import {fetchPopularMovies} from "../../redux/popularMoviesSlice/popularMoviesSlice";
+import {Swiper, SwiperSlide} from "swiper/react";
+import {A11y, Navigation, Pagination, Autoplay} from "swiper";
+
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/scrollbar';
+import 'swiper/css/autoplay'
 
 const Home = () => {
   const dispatch = useDispatch()
   const {searchValue, movies} = useSelector((state) => state.movie)
   const {watchlist} = useSelector((state) => state.watchList)
+  const {popularMovies} = useSelector((state) => state.popularMovie)
 
   const {status} = useSelector((state) => state.movie)
 
   const skeletons = [...new Array(20)].map((_, index) => <Skeleton key={index}/>)
 
   const findMovies = movies.map((obj) => <Movies key={obj.id} {...obj}/>)
+
+  const pMovies = popularMovies.map((obj) =>
+    <SwiperSlide>
+      <div className={sliderStyle.slider__item}>
+        <img src={`https://image.tmdb.org/t/p/w1280/${obj.backdrop_path}`} alt=""/>
+      </div>
+    </SwiperSlide>
+  )
 
   console.log(searchValue)
   console.log(movies)
@@ -24,6 +43,10 @@ const Home = () => {
       dispatch(fetchMovies(searchValue))
     }
   }, [searchValue])
+
+  useEffect(() => {
+    dispatch(fetchPopularMovies())
+  }, [])
 
 
   useEffect(() => {
@@ -35,6 +58,29 @@ const Home = () => {
   return (
     <>
       <div>HOME</div>
+
+      <section>
+        <Swiper
+          className={sliderStyle.slider}
+          modules={[Navigation, Pagination, A11y, Autoplay]}
+          spaceBetween={1}
+          slidesPerView={1}
+          navigation
+          loop={true}
+          autoplay={true}
+          pagination={{clickable: true}}
+          onSwiper={(swiper) => console.log(swiper)}
+          onSlideChange={() => console.log('slide change')}
+        >
+
+          {
+            pMovies
+          }
+
+
+        </Swiper>
+      </section>
+
       <section className={MoviesStyle.movies}>
         <div className={MoviesStyle.movies__items}>
           {

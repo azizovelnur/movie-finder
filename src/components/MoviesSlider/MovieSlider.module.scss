@@ -1,9 +1,13 @@
 .slider {
-  width: 100%;
-  height: 400px;
-  background-color: gray;
+  border-radius: 20px;
 
-  img {
+  .slider__item {
     width: 100%;
+    height: 470px;
+
+    img {
+      width: 100%;
+    }
   }
 }
+
