@@ -30,7 +30,9 @@ const Home = () => {
   const pMovies = popularMovies.map((obj) =>
     <SwiperSlide key={obj.id}>
       <div className={sliderStyle.slider__item}>
-        <img src={`https://image.tmdb.org/t/p/w1280/${obj.backdrop_path}`} alt=""/>
+        <div className={sliderStyle.title}>{obj.title}</div>
+        <div className={sliderStyle.rating}> rating: {obj.vote_average}</div>
+        <img className={sliderStyle.image} src={`https://image.tmdb.org/t/p/w1280/${obj.backdrop_path}`} alt=""/>
       </div>
     </SwiperSlide>
   )

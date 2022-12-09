@@ -29,6 +29,9 @@ const Movies = ({id, poster_path, title, vote_average}) => {
 
       <div className={MoviesStyle.item__rating}>{vote_average}</div>
 
+      <button className={MoviesStyle.hideBtn}>more info</button>
+
+
       <button ref={watchlistRef} disabled={false} onClick={addItemToWatchList} className={MoviesStyle.item__watchListBtn}>add to watchlist</button>
     </div>
 
