@@ -28,7 +28,7 @@ const Home = () => {
   const findMovies = movies.map((obj) => <Movies key={obj.id} {...obj}/>)
 
   const pMovies = popularMovies.map((obj) =>
-    <SwiperSlide>
+    <SwiperSlide key={obj.id}>
       <div className={sliderStyle.slider__item}>
         <img src={`https://image.tmdb.org/t/p/w1280/${obj.backdrop_path}`} alt=""/>
       </div>
