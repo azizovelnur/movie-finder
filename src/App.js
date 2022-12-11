@@ -4,6 +4,7 @@ import Home from "./pages/Home/Home";
 import {Route, Routes} from "react-router-dom";
 import Layout from "./components/Layout/Layout";
 import WatchList from "./pages/WatchList/WatchList";
+import FullMovie from "./pages/FullMovie/FullMovie";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route path={'/'} element={<Layout/>}>
           <Route index element={<Home/>}/>
           <Route path={'watchlist'} element={<WatchList/>}/>
+          <Route path={'movie/:id'} element={<FullMovie/>}/>
         </Route>
 
       </Routes>
