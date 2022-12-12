@@ -18,8 +18,6 @@ const FullMovie = () => {
   const navigateHome = useNavigate()
 
 
-
-
   console.log(fullMovie)
 
   console.log(id)
@@ -61,6 +59,9 @@ const FullMovie = () => {
         opts={{
           width: '600px',
           height: '400px',
+          playerVars: {
+            autoplay: 1,
+          },
         }}
       />
     )
@@ -78,9 +79,9 @@ const FullMovie = () => {
 
       <div className={fullMovieStyle.items}>
 
-          {
-            playerTrailer && watchTrailer()
-          }
+        {
+          playerTrailer && watchTrailer()
+        }
         <div className={fullMovieStyle.imgBlock}>
 
           <img
@@ -113,9 +114,12 @@ const FullMovie = () => {
             {fullMovie.overview}
           </div>
 
-          <button className={fullMovieStyle.btnOpenPlayer} onClick={() => setPlayerTrailer(true)}><OpenPlayerIcon height={40} width={40}/>Open Trailer</button>
+          <button className={fullMovieStyle.btnOpenPlayer} onClick={() => setPlayerTrailer(true)}><OpenPlayerIcon
+            height={40} width={40}/>Open Trailer
+          </button>
 
-          <button className={playerTrailer ? fullMovieStyle.btnClosePlayer : fullMovieStyle.btnCloseHide} onClick={() => setPlayerTrailer(false)}><ClosePlayerIcon height={40} width={40}/></button>
+          <button className={playerTrailer ? fullMovieStyle.btnClosePlayer : fullMovieStyle.btnCloseHide}
+                  onClick={() => setPlayerTrailer(false)}><ClosePlayerIcon height={40} width={40}/></button>
 
 
         </div>
