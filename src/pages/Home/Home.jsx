@@ -15,6 +15,7 @@ import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 import 'swiper/css/autoplay'
 import {fetchTopRatedMovies} from "../../redux/topRatedMoviesSlice/topRatedMoviesSlice";
+import {Link} from "react-router-dom";
 
 const Home = () => {
   const dispatch = useDispatch()
@@ -29,12 +30,16 @@ const Home = () => {
   const topRatedMovies = topRatedMoviesData.map((obj) => <Movies key={obj.id} {...obj}/>)
 
   const pMovies = popularMovies.map((obj) =>
+
+
     <SwiperSlide key={obj.id}>
+    <Link to={`movie/${obj.id}`}>
       <div className={sliderStyle.slider__item}>
         <div className={sliderStyle.title}>{obj.title}</div>
         <div className={sliderStyle.rating}> rating: {obj.vote_average}</div>
         <img className={sliderStyle.image} src={`https://image.tmdb.org/t/p/w1280/${obj.backdrop_path}`} alt=""/>
       </div>
+    </Link>
     </SwiperSlide>
   )
 
