@@ -1,11 +1,5 @@
 .search {
   position: relative;
-  &:focus-within {
-    .result {
-      display: block;
-    }
-  }
-
 
   .result {
     display: none;

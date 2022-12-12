@@ -1,10 +1,9 @@
-import React, {useCallback, useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useRef, useState} from 'react';
 import SearchS from './Search.module.scss'
 import find from '../../assets/find.svg'
 import {fetchMovies, setSearchValue} from "../../redux/movieSlice/movieSlice";
 import {useDispatch, useSelector} from "react-redux";
 import debounce from "lodash/debounce";
-import Movies from "../Movies/Movies";
 import SearchList from "./SearchList/SearchList"; //todo import from deboune.js
 
 
@@ -13,6 +12,10 @@ const Search = () => {
 
   const [searchMovie, setSearchMovie] = useState('')
   const dispatch = useDispatch()
+
+  const searchRes = useRef()
+
+
 
   const addSearchValue = useCallback(
     debounce( (findValue) => {
@@ -24,7 +27,29 @@ const Search = () => {
   const onChangeInput = (event) => {
     setSearchMovie(event.target.value)
     addSearchValue(event.target.value)
+    searchRes.current.style.display = 'block'
+    if (event.target.value === '') {
+      searchRes.current.style.display = 'none'
+    }
   }
+
+
+
+  useEffect(() => {
+
+    const handleClickOutside = (event) => {
+      if (!event.path.includes(searchRes.current)) {
+        searchRes.current.style.display = 'none'
+        setSearchMovie('')
+      }
+    }
+
+    document.body.addEventListener('click', handleClickOutside)
+
+
+  }, [])
+
+
 
 
   return (
@@ -38,7 +63,7 @@ const Search = () => {
           type="text"
           placeholder={'find movie...'}/>
 
-        <div className={SearchS.result}>
+        <div ref={searchRes} className={SearchS.result}>
           {
             movies.map((obj) => <SearchList key={obj.id} {...obj}/>)
           }
