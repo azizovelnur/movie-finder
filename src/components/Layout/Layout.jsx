@@ -6,6 +6,7 @@ const Layout = () => {
   return (
     <>
       <Header/>
+      <div style={{height: '100px'}}></div>
       <div className={'container'}>
         <Outlet/>
       </div>

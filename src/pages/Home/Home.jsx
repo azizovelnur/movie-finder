@@ -59,8 +59,6 @@ const Home = () => {
 
   return (
     <>
-      <div>HOME</div>
-
       <section>
         <Swiper
           className={sliderStyle.slider}
