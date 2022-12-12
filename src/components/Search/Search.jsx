@@ -2,11 +2,14 @@ import React, {useCallback, useEffect, useState} from 'react';
 import SearchS from './Search.module.scss'
 import find from '../../assets/find.svg'
 import {fetchMovies, setSearchValue} from "../../redux/movieSlice/movieSlice";
-import {useDispatch} from "react-redux";
-import debounce from "lodash/debounce"; //todo import from deboune.js
+import {useDispatch, useSelector} from "react-redux";
+import debounce from "lodash/debounce";
+import Movies from "../Movies/Movies";
+import SearchList from "./SearchList/SearchList"; //todo import from deboune.js
 
 
 const Search = () => {
+  const {movies} = useSelector((state) => state.movie)
 
   const [searchMovie, setSearchMovie] = useState('')
   const dispatch = useDispatch()
@@ -34,6 +37,12 @@ const Search = () => {
           onChange={onChangeInput}
           type="text"
           placeholder={'find movie...'}/>
+
+        <div className={SearchS.result}>
+          {
+            movies.map((obj) => <SearchList key={obj.id} {...obj}/>)
+          }
+        </div>
       </div>
     </>
   )

@@ -1,0 +1,16 @@
+.link {
+  text-decoration: none;
+}
+
+
+.item {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px;
+  cursor: pointer;
+  color: white;
+
+  &__img {
+    height: 60px;
+  }
+}
