@@ -1,5 +1,13 @@
+.ytBlock {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+
+
 .fullMovie {
   margin-top: 30px;
+  margin-bottom: 30px;
   height: 600px;
   position: relative;
   isolation: isolate;
@@ -9,32 +17,83 @@
 
 
   .items {
-    width: 100%;
     margin-left: 30px;
     margin-right: 30px;
     display: flex;
     justify-content: space-between;
+    align-items: center;
 
 
     .imgBlock {
-      background-color: green;
-      margin: 4px;
       &__image {
         border-radius: 10px;
       }
     }
 
     .moreInfoBlock {
-      background-color: green;
+      height: 450px;
+      margin-left: 34px;
       width: 800px;
 
-      &__title {
-        font-size: 36px;
+      &__titleWrapper {
+        display: flex;
+        align-items: center;
       }
+
+      &__title {
+        font-size: 30px;
+        margin-right: 40px
+      }
+
+      &__releaseDate, &__runtime, &__rating {
+        background-color: #1c1c1c;
+        border-radius: 4px;
+        padding: 4px;
+        margin-left: 10px;
+        cursor: pointer;
+      }
+
 
       &__overview {
         margin-top: 100px;
         font-size: 16px;
+
+        h3 {
+          font-size: 26px;
+          margin-bottom: 10px;
+        }
+      }
+
+      .btnOpenPlayer {
+        display: flex;
+        align-items: center;
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-size: 32px;
+        font-weight: 900;
+        margin-top: 80px;
+
+        &:hover {
+          color: gold;
+          fill: gold;
+        }
+      }
+
+      .btnClosePlayer {
+        color: gold;
+        fill: gold;
+        background: none;
+        border: none;
+        cursor: pointer;
+        display: block;
+        top: 20px;
+        right: 30px;
+        position: absolute;
+      }
+
+      .btnCloseHide {
+        display: none;
       }
     }
   }
@@ -45,7 +104,7 @@
   border-radius: 20px;
   content: '';
   position: absolute;
-  background-color: #696356;
+  background-color: #3a3734;
   z-index: -1;
   inset: 0;
   opacity: 0.9;
