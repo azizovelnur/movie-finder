@@ -1,14 +1,14 @@
 import React, {useCallback, useEffect, useRef, useState} from 'react';
 import SearchS from './Search.module.scss'
 import find from '../../assets/find.svg'
-import {fetchMovies, setSearchValue} from "../../redux/movieSlice/movieSlice";
+import {setSearchValue} from "../../redux/searchMoviesSlice/searchMoviesSlice";
 import {useDispatch, useSelector} from "react-redux";
 import debounce from "lodash/debounce";
 import SearchList from "./SearchList/SearchList"; //todo import from deboune.js
 
 
 const Search = () => {
-  const {movies} = useSelector((state) => state.movie)
+  const {searchMoviesData} = useSelector((state) => state.searchMovies)
 
   const [searchMovie, setSearchMovie] = useState('')
   const dispatch = useDispatch()
@@ -65,7 +65,7 @@ const Search = () => {
 
         <div ref={searchRes} className={SearchS.result}>
           {
-            movies.map((obj) => <SearchList key={obj.id} {...obj}/>)
+            searchMoviesData.map((obj) => <SearchList key={obj.id} {...obj}/>)
           }
         </div>
       </div>

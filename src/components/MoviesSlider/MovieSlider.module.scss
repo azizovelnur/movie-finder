@@ -1,4 +1,12 @@
 .slider {
+
+  &__title {
+    font-size: 30px;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+
+  &__items {
   border-radius: 20px;
   position: relative;
 
@@ -30,3 +38,4 @@
   }
 }
 
+}

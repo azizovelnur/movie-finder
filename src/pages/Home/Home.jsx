@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import Skeleton from "../../components/Skeleton/Skeleton";
 import {useDispatch, useSelector} from "react-redux";
-import {fetchMovies} from "../../redux/movieSlice/movieSlice";
+import {fetchSearchMovies} from "../../redux/searchMoviesSlice/searchMoviesSlice";
 import Movies from "../../components/Movies/Movies";
 import MoviesStyle from '../../components/Movies/Movies.module.scss'
 import sliderStyle from '../../components/MoviesSlider/MovieSlider.module.scss'
@@ -17,15 +17,15 @@ import 'swiper/css/autoplay'
 
 const Home = () => {
   const dispatch = useDispatch()
-  const {searchValue, movies} = useSelector((state) => state.movie)
+  const {searchValue} = useSelector((state) => state.searchMovies)
   const {watchlist} = useSelector((state) => state.watchList)
   const {popularMovies} = useSelector((state) => state.popularMovie)
 
-  const {status} = useSelector((state) => state.movie)
+  // const {status} = useSelector((state) => state.movie)
 
-  const skeletons = [...new Array(20)].map((_, index) => <Skeleton key={index}/>)
+  // const skeletons = [...new Array(20)].map((_, index) => <Skeleton key={index}/>)
 
-  const findMovies = movies.map((obj) => <Movies key={obj.id} {...obj}/>)
+  // const findMovies = movies.map((obj) => <Movies key={obj.id} {...obj}/>)
 
   const pMovies = popularMovies.map((obj) =>
     <SwiperSlide key={obj.id}>
@@ -37,12 +37,12 @@ const Home = () => {
     </SwiperSlide>
   )
 
-  console.log(searchValue)
-  console.log(movies)
+  // console.log(searchValue)
+  // console.log(movies)
 
   useEffect(() => {
     if (searchValue !== '') {
-      dispatch(fetchMovies(searchValue))
+      dispatch(fetchSearchMovies(searchValue))
     }
   }, [searchValue])
 
@@ -59,9 +59,10 @@ const Home = () => {
 
   return (
     <>
-      <section>
+      <section className={sliderStyle.slider}>
+        <div className={sliderStyle.slider__title}>Popular Movies</div>
         <Swiper
-          className={sliderStyle.slider}
+          className={sliderStyle.slider__items}
           modules={[Navigation, Pagination, A11y, Autoplay]}
           spaceBetween={1}
           slidesPerView={1}
@@ -83,9 +84,9 @@ const Home = () => {
 
       <section className={MoviesStyle.movies}>
         <div className={MoviesStyle.movies__items}>
-          {
-            status === 'loading' ? skeletons : findMovies
-          }
+          {/*{*/}
+          {/*  status === 'loading' ? skeletons : findMovies*/}
+          {/*}*/}
         </div>
       </section>
     </>

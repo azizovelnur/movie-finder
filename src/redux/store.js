@@ -1,11 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit'
-import movie from './movieSlice/movieSlice'
+import searchMovies from './searchMoviesSlice/searchMoviesSlice'
 import watchList from './watchlistSlice/watchlistSlice'
 import popularMovie from './popularMoviesSlice/popularMoviesSlice'
 
 export const store = configureStore({
   reducer: {
-    movie,
+    searchMovies,
     watchList,
     popularMovie
   },
