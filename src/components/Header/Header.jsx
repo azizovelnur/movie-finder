@@ -2,9 +2,12 @@ import React from 'react'
 import HeaderS from './Header.module.scss'
 import {ReactComponent as Logo} from '../../assets/movie-icon.svg'
 import Search from "../Search/Search"
-import {Link, NavLink} from "react-router-dom";
+import {Link, NavLink, useLocation} from "react-router-dom";
 
 const Header = () => {
+
+  const locationPath = useLocation()
+
   return (
     <header className={HeaderS.header}>
 
@@ -17,7 +20,9 @@ const Header = () => {
             <h2 className={'logo__title'}>Movie Finder</h2>
           </div>
 
-          <Search/>
+          {
+            (locationPath.pathname === '/') && <Search/>
+          }
 
           <nav className={'menu'}>
             <ul className={HeaderS.menu__items}>
