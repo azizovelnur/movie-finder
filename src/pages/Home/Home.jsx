@@ -14,18 +14,19 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 import 'swiper/css/autoplay'
+import {fetchTopRatedMovies} from "../../redux/topRatedMoviesSlice/topRatedMoviesSlice";
 
 const Home = () => {
   const dispatch = useDispatch()
   const {searchValue} = useSelector((state) => state.searchMovies)
   const {watchlist} = useSelector((state) => state.watchList)
   const {popularMovies} = useSelector((state) => state.popularMovie)
+  const {topRatedMoviesData, status} = useSelector((state) => state.topRatedMovies)
 
-  // const {status} = useSelector((state) => state.movie)
 
-  // const skeletons = [...new Array(20)].map((_, index) => <Skeleton key={index}/>)
+  const skeletons = [...new Array(20)].map((_, index) => <Skeleton key={index}/>)
 
-  // const findMovies = movies.map((obj) => <Movies key={obj.id} {...obj}/>)
+  const topRatedMovies = topRatedMoviesData.map((obj) => <Movies key={obj.id} {...obj}/>)
 
   const pMovies = popularMovies.map((obj) =>
     <SwiperSlide key={obj.id}>
@@ -50,6 +51,9 @@ const Home = () => {
     dispatch(fetchPopularMovies())
   }, [])
 
+   useEffect(() => {
+    dispatch(fetchTopRatedMovies())
+  }, [])
 
   useEffect(() => {
     const jsonWatchListElements = JSON.stringify(watchlist);
@@ -83,10 +87,11 @@ const Home = () => {
       </section>
 
       <section className={MoviesStyle.movies}>
+        <div className={MoviesStyle.movies__title}>Top Rated</div>
         <div className={MoviesStyle.movies__items}>
-          {/*{*/}
-          {/*  status === 'loading' ? skeletons : findMovies*/}
-          {/*}*/}
+          {
+            status === 'loading' ? skeletons : topRatedMovies
+          }
         </div>
       </section>
     </>

@@ -1,4 +1,10 @@
 .movies {
+  margin-top: 100px;
+
+  &__title {
+    text-align: center;
+    font-size: 36px;
+  }
 
   &__items {
     display: flex;
