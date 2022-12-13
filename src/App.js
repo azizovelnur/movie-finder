@@ -1,12 +1,21 @@
-import React from "react";
+import React, {useEffect} from "react";
 import './scss/App.scss'
 import Home from "./pages/Home/Home";
 import {Route, Routes} from "react-router-dom";
 import Layout from "./components/Layout/Layout";
 import WatchList from "./pages/WatchList/WatchList";
 import FullMovie from "./pages/FullMovie/FullMovie";
+import {useSelector} from "react-redux";
 
 function App() {
+
+  const {watchlist} = useSelector((state) => state.watchList)
+
+   useEffect(() => {
+    const jsonWatchListElements = JSON.stringify(watchlist);
+    localStorage.setItem('watchlistItemLC', jsonWatchListElements)
+  }, [watchlist])
+
   return (
     <div>
       <Routes>
