@@ -35,19 +35,19 @@ const Search = () => {
 
 
 
-  useEffect(() => {
-
-    const handleClickOutside = (event) => {
-      if (!event.path.includes(searchRes.current)) {
-        searchRes.current.style.display = 'none'
-        setSearchMovie('')
-      }
-    }
-
-    document.body.addEventListener('click', handleClickOutside)
-
-
-  }, [])
+  // useEffect(() => {
+  //
+  //   const handleClickOutside = (event) => {
+  //     if (!event.path.includes(searchRes.current)) {
+  //       searchRes.current.style.display = 'none'
+  //       setSearchMovie('')
+  //     }
+  //   }
+  //
+  //   document.body.addEventListener('click', handleClickOutside)
+  //
+  //
+  // }, [])
 
 
 

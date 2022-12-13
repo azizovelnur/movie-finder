@@ -12,8 +12,8 @@ const Movies = ({id, poster_path, title, vote_average}) => {
   const watchlistRef = useRef()
 
   const addItemToWatchList = () => {
-    watchlistRef.current.disabled = true
-    watchlistRef.current.innerText = 'was added'
+    // watchlistRef.current.disabled = true
+    // watchlistRef.current.innerText = 'was added'
     dispatch(addItem({poster_path, title, vote_average, id}))
   }
 

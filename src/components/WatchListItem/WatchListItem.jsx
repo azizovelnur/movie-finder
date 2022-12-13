@@ -1,10 +1,13 @@
 import React from 'react';
 import wlStlye from './WatchListItem.module.scss'
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {removeItem} from "../../redux/watchlistSlice/watchlistSlice";
 
 const WatchListItem = ({title, poster_path, vote_average, id}) => {
 
+  // const {watchlist} = useSelector((state) => state.watchList)
+  // const jsonWatchListElements = JSON.stringify(watchlist)
+  // localStorage.setItem('watchlistItemLC', jsonWatchListElements)
   const dispatch = useDispatch()
 
 

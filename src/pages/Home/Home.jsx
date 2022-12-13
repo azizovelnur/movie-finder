@@ -60,10 +60,10 @@ const Home = () => {
     dispatch(fetchTopRatedMovies())
   }, [])
 
-  useEffect(() => {
-    const jsonWatchListElements = JSON.stringify(watchlist);
-    localStorage.setItem('watchlistItemLC', jsonWatchListElements)
-  }, [watchlist])
+  // useEffect(() => {
+  //   const jsonWatchListElements = JSON.stringify(watchlist);
+  //   localStorage.setItem('watchlistItemLC', jsonWatchListElements)
+  // }, [watchlist])
 
 
   return (
