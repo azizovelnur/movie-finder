@@ -80,6 +80,28 @@
         }
       }
 
+      .buttons {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .btnAddToWatchList {
+        display: flex;
+        align-items: center;
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-size: 32px;
+        font-weight: 900;
+        margin-top: 80px;
+
+        &:hover {
+          color: gold;
+          fill: gold;
+        }
+      }
+
+
       .btnClosePlayer {
         color: gold;
         fill: gold;

@@ -4,7 +4,10 @@ import axios from "axios";
 import {useNavigate, useParams} from "react-router-dom";
 import YouTube from "react-youtube";
 import {ReactComponent as ClosePlayerIcon} from '../../assets/close-player.svg'
+import {ReactComponent as WatchListIcon} from '../../assets/watchlist-icon.svg'
 import {ReactComponent as OpenPlayerIcon} from '../../assets/open-player.svg'
+import {addItem} from "../../redux/watchlistSlice/watchlistSlice";
+import {useDispatch} from "react-redux";
 
 const FullMovie = () => {
 
@@ -16,6 +19,7 @@ const FullMovie = () => {
 
   const {id} = useParams()
   const navigateHome = useNavigate()
+  const dispatch = useDispatch()
 
 
   console.log(fullMovie)
@@ -67,6 +71,13 @@ const FullMovie = () => {
     )
   }
 
+   const addItemToWatchList = () => {
+    // watchlistRef.current.disabled = true
+    // watchlistRef.current.innerText = 'was added'
+     console.log(fullMovie)
+    dispatch(addItem({...fullMovie}))
+  }
+
 
   return (
 
@@ -114,9 +125,15 @@ const FullMovie = () => {
             {fullMovie.overview}
           </div>
 
-          <button className={fullMovieStyle.btnOpenPlayer} onClick={() => setPlayerTrailer(true)}><OpenPlayerIcon
-            height={40} width={40}/>Open Trailer
-          </button>
+
+          <div className={fullMovieStyle.buttons}>
+            <button className={fullMovieStyle.btnOpenPlayer} onClick={() => setPlayerTrailer(true)}><OpenPlayerIcon
+              height={40} width={40}/>Open Trailer
+            </button>
+
+
+            <button className={fullMovieStyle.btnAddToWatchList} onClick={addItemToWatchList}>Add to watchlist <WatchListIcon height={40} width={50}/></button>
+          </div>
 
           <button className={playerTrailer ? fullMovieStyle.btnClosePlayer : fullMovieStyle.btnCloseHide}
                   onClick={() => setPlayerTrailer(false)}><ClosePlayerIcon height={40} width={40}/></button>
