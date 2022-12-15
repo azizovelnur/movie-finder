@@ -15,12 +15,11 @@ import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 import 'swiper/css/autoplay'
 import {fetchTopRatedMovies} from "../../redux/topRatedMoviesSlice/topRatedMoviesSlice";
-import {Link} from "react-router-dom";
+import MovieSlider from "../../components/MoviesSlider/MovieSlider";
 
 const Home = () => {
   const dispatch = useDispatch()
   const {searchValue} = useSelector((state) => state.searchMovies)
-  const {watchlist} = useSelector((state) => state.watchList)
   const {popularMovies} = useSelector((state) => state.popularMovie)
   const {topRatedMoviesData, status} = useSelector((state) => state.topRatedMovies)
 
@@ -30,21 +29,11 @@ const Home = () => {
   const topRatedMovies = topRatedMoviesData.map((obj) => <Movies key={obj.id} {...obj}/>)
 
   const pMovies = popularMovies.map((obj) =>
-
-
     <SwiperSlide key={obj.id}>
-    <Link to={`movie/${obj.id}`}>
-      <div className={sliderStyle.slider__item}>
-        <div className={sliderStyle.title}>{obj.title}</div>
-        <div className={sliderStyle.rating}> rating: {obj.vote_average}</div>
-        <img className={sliderStyle.image} src={`https://image.tmdb.org/t/p/w1280/${obj.backdrop_path}`} alt=""/>
-      </div>
-    </Link>
+      <MovieSlider obj={obj}/>
     </SwiperSlide>
   )
 
-  // console.log(searchValue)
-  // console.log(movies)
 
   useEffect(() => {
     if (searchValue !== '') {
@@ -56,14 +45,9 @@ const Home = () => {
     dispatch(fetchPopularMovies())
   }, [])
 
-   useEffect(() => {
+  useEffect(() => {
     dispatch(fetchTopRatedMovies())
   }, [])
-
-  // useEffect(() => {
-  //   const jsonWatchListElements = JSON.stringify(watchlist);
-  //   localStorage.setItem('watchlistItemLC', jsonWatchListElements)
-  // }, [watchlist])
 
 
   return (

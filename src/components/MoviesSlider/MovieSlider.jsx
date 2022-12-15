@@ -1,22 +1,21 @@
 import React from 'react';
-import {SwiperSlide} from "swiper/react";
 import sliderStyle from './MovieSlider.module.scss'
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
-import {A11y, Navigation, Pagination} from "swiper";
+import {Link} from "react-router-dom";
 
-// const MovieSlider = () => {
-//   return (
-//   <SwiperSlide>
-//     <div className={sliderStyle.slider}>
-//       <img src="https://e1nur.github.io/UlyibkaReady/images/promotionImg/Family.jpg" alt=""/>
-//       <div>fewfewfew</div>
-//     </div>
-//   </SwiperSlide>
-//
-//   );
-// };
+const MovieSlider = ({obj}) => {
+  return (
+    <Link to={`movie/${obj.id}`}>
+      <div className={sliderStyle.slider__item}>
+        <div className={sliderStyle.title}>{obj.title}</div>
+        <img className={sliderStyle.image} src={`https://image.tmdb.org/t/p/w1280/${obj.backdrop_path}`} alt=""/>
+      </div>
+    </Link>
 
-// export default MovieSlider;
+  );
+};
+
+export default MovieSlider;

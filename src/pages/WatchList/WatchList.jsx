@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {useSelector} from "react-redux";
 import wlStyle from '../../components/Movies/Movies.module.scss'
 import Movies from "../../components/Movies/Movies";
@@ -10,11 +10,6 @@ const WatchList = () => {
 
   const watchListItem = watchlist.map((item) => <Movies key={item.id} {...item}/>)
 
-
-  // useEffect(() => {
-  //   const jsonWatchListElements = JSON.stringify(watchlist);
-  //   localStorage.setItem('watchlistItemLC', jsonWatchListElements)
-  // }, [watchlist])
 
   return (
     <section className={wlStyle.movies}>

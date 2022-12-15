@@ -26,13 +26,6 @@ const Header = () => {
 
           <nav className={'menu'}>
             <ul className={HeaderS.menu__items}>
-              {/*<Link to={'/'}>*/}
-              {/*  <li className={HeaderS.menu__item}>Home</li>*/}
-              {/*</Link>*/}
-              {/*<Link to={'watchlist'}>*/}
-              {/*  <li className={HeaderS.menu__item}>Watchlist</li>*/}
-              {/*</Link>*/}
-
               <NavLink
                 to={'/'}
                 className={(navData) => (navData.isActive ? HeaderS.active : HeaderS.menu__item)}>
