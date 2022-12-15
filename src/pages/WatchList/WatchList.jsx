@@ -1,14 +1,14 @@
 import React, {useEffect} from 'react';
 import {useSelector} from "react-redux";
-import WatchListItem from "../../components/WatchListItem/WatchListItem";
-import wlStyle from '../../components/WatchListItem/WatchListItem.module.scss'
+import wlStyle from '../../components/Movies/Movies.module.scss'
+import Movies from "../../components/Movies/Movies";
 
 const WatchList = () => {
 
 
   const {watchlist} = useSelector((state) => state.watchList)
 
-  const watchListItem = watchlist.map((item) => <WatchListItem key={item.id} {...item}/>)
+  const watchListItem = watchlist.map((item) => <Movies key={item.id} {...item}/>)
 
 
   // useEffect(() => {
@@ -17,9 +17,8 @@ const WatchList = () => {
   // }, [watchlist])
 
   return (
-    <section className={wlStyle.watchList}>
-      <div className={wlStyle.watchList__items}>
-
+    <section className={wlStyle.movies}>
+      <div className={wlStyle.movies__items}>
         {
           watchListItem
         }

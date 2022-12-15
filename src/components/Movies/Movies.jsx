@@ -2,11 +2,12 @@ import React from 'react';
 import MoviesStyle from './Movies.module.scss'
 import {useRef} from "react";
 import {useDispatch} from "react-redux";
-import {addItem} from "../../redux/watchlistSlice/watchlistSlice";
-import {Link} from "react-router-dom";
+import {addItem, removeItem} from "../../redux/watchlistSlice/watchlistSlice";
+import {Link, useLocation} from "react-router-dom";
 
 const Movies = ({id, poster_path, title, vote_average}) => {
 
+  const locationPath = useLocation();
   const dispatch = useDispatch()
 
   const watchlistRef = useRef()
@@ -17,13 +18,18 @@ const Movies = ({id, poster_path, title, vote_average}) => {
     dispatch(addItem({poster_path, title, vote_average, id}))
   }
 
+   const removeWatchListItem = () => {
+   dispatch(removeItem(id))
+ }
+
+
   const titleUrl = title.replace(/\s/g, '-')
 
 
   return (
 
     <div className={MoviesStyle.item}>
-      <Link to={`movie/${id}${titleUrl}`}>
+      <Link to={`/movie/${id}${titleUrl}`}>
 
       <img
         className={MoviesStyle.item__img}
@@ -36,7 +42,10 @@ const Movies = ({id, poster_path, title, vote_average}) => {
 
       <div className={MoviesStyle.item__rating}>{vote_average}</div>
 
-      <button ref={watchlistRef} disabled={false} onClick={addItemToWatchList} className={MoviesStyle.item__watchListBtn}>add to watchlist</button>
+      {
+        (locationPath.pathname === '/') ?  <button ref={watchlistRef} disabled={false} onClick={addItemToWatchList} className={MoviesStyle.item__watchListBtn}>add to watchlist</button>  : <button onClick={removeWatchListItem} className={MoviesStyle.item__watchListBtn}>remove</button>
+      }
+
     </div>
 
   );
