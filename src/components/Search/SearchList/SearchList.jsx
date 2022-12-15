@@ -4,10 +4,10 @@ import {Link} from "react-router-dom";
 
 const SearchList = ({id, poster_path, title}) => {
 
-  const titleUrl = title.replace(/\s/g, '-')
+  // const titleUrl = title.replace(/\s/g, '-')
 
   return (
-    <Link className={SearchListStyle.link} to={`movie/${id}${titleUrl}`}>
+    <Link className={SearchListStyle.link} to={`movie/${id}`}>
       <div className={SearchListStyle.item}>
 
         <img

@@ -1,9 +1,9 @@
 import {createSlice} from "@reduxjs/toolkit";
-
+import {getDataFromLocalStorage} from "../../utils/getDataFromLocalStorage";
 
 
 const initialState = {
-  watchlist: JSON.parse(localStorage.getItem('watchlistItemLC')) || [],
+  watchlist: getDataFromLocalStorage()
 }
 
 const watchlistSlice = createSlice({
@@ -11,19 +11,34 @@ const watchlistSlice = createSlice({
   initialState,
 
   reducers: {
-    addItem(state, action) {
-      const movies = state.watchlist.filter( ( obj ) => obj.id !== action.payload.id);
-      // console.log(JSON.parse(JSON.stringify(movies)))
-      state.watchlist = [...movies, action.payload]
+    setSavedMovies: (state) => {
+      state.watchlist = state.watchlist.filter((movie) => {
+        if (movie.isSaved) {
+          return movie
+        }
+      })
     },
-    removeItem(state, action) {
-      state.watchlist = state.watchlist.filter((item) => item.id !== action.payload)
-    }
+
+    addItem(state, action) {
+      const movie = state.watchlist.find((obj) => obj.id === action.payload.id);
+
+      if (movie) {
+        movie.isSaved = !movie.isSaved
+      } else {
+        state.watchlist.push({
+          ...action.payload,
+          isSaved: true
+        })
+      }
+    },
   },
 
 
 })
 
-export const {addItem, removeItem} = watchlistSlice.actions
+export const findMovieById = (id) => (state) => state.watchList.watchlist.find((obj) => obj.id === id)
+
+export const {addItem,setSavedMovies} = watchlistSlice.actions
+
 
 export default watchlistSlice.reducer

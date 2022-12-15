@@ -6,8 +6,10 @@ import YouTube from "react-youtube";
 import {ReactComponent as ClosePlayerIcon} from '../../assets/close-player.svg'
 import {ReactComponent as WatchListIcon} from '../../assets/watchlist-icon.svg'
 import {ReactComponent as OpenPlayerIcon} from '../../assets/open-player.svg'
-import {addItem} from "../../redux/watchlistSlice/watchlistSlice";
-import {useDispatch} from "react-redux";
+import {ReactComponent as addToWl} from '../../assets/favorite-add-icon.svg'
+import {ReactComponent as removeFromWl} from '../../assets/favorite-remove-icon.svg'
+import {addItem, findMovieById, setSavedMovies} from "../../redux/watchlistSlice/watchlistSlice";
+import {useDispatch, useSelector} from "react-redux";
 
 const FullMovie = () => {
 
@@ -15,16 +17,17 @@ const FullMovie = () => {
   const [movieTrailer, setMovieTrailer] = useState('')
   const [playerTrailer, setPlayerTrailer] = useState(false)
 
-  // const [isLoadingGenres, setIsLoadingGenres] = useState(false)
+
 
   const {id} = useParams()
-  const navigateHome = useNavigate()
+  const savedMovie = useSelector(findMovieById(Number(id)))
+  const isSaved = savedMovie?.isSaved === true ? 'Remove from Watchlist' : 'Add to Watchlist'
+
+  // const [isLoadingGenres, setIsLoadingGenres] = useState(false)
+  // const navigateHome = useNavigate()
   const dispatch = useDispatch()
 
 
-  console.log(fullMovie)
-
-  console.log(id)
 
   useEffect(() => {
     const fetchFullMovie = async () => {
@@ -32,7 +35,7 @@ const FullMovie = () => {
         const fullMovieData = await axios.get(`https://api.themoviedb.org/3/movie/${id}?api_key=dfd3c55a40f798c4ac314d4aeaf609ea`)
         setFullMovie(fullMovieData.data)
       } catch (err) {
-        navigateHome('/')
+        // navigateHome('/')
         console.log(err)
       }
     }
@@ -71,11 +74,9 @@ const FullMovie = () => {
     )
   }
 
-   const addItemToWatchList = () => {
-    // watchlistRef.current.disabled = true
-    // watchlistRef.current.innerText = 'was added'
-     console.log(fullMovie)
+  const addItemToWatchList = () => {
     dispatch(addItem({...fullMovie}))
+    dispatch(setSavedMovies())
   }
 
 
@@ -132,7 +133,14 @@ const FullMovie = () => {
             </button>
 
 
-            <button className={fullMovieStyle.btnAddToWatchList} onClick={addItemToWatchList}>Add to watchlist <WatchListIcon height={40} width={50}/></button>
+            <button className={fullMovieStyle.btnAddToWatchList} onClick={addItemToWatchList}>
+
+              {
+                isSaved
+              }
+              <WatchListIcon height={30} width={30}/>
+
+            </button>
           </div>
 
           <button className={playerTrailer ? fullMovieStyle.btnClosePlayer : fullMovieStyle.btnCloseHide}
