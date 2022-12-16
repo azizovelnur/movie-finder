@@ -42,7 +42,8 @@
 
       &__title {
         font-size: 30px;
-        margin-right: 40px
+        margin-right: 40px;
+        margin-bottom: 20px;
       }
 
       &__releaseDate, &__runtime, &__rating {
@@ -67,10 +68,13 @@
       .btnOpenPlayer {
         display: flex;
         align-items: center;
-        background: none;
         border: none;
+        background-color: #1c1c1c;
+        border-radius: 10px;
+        padding: 10px;
+        color: #fff;
         cursor: pointer;
-        font-size: 32px;
+        font-size: 18px;
         font-weight: 900;
         margin-top: 80px;
 
@@ -88,10 +92,13 @@
       .btnAddToWatchList {
         display: flex;
         align-items: center;
-        background: none;
+        background-color: #1c1c1c;
+        padding: 10px;
         border: none;
+        font-size: 18px;
+        color: #fff;
         cursor: pointer;
-        font-size: 32px;
+        border-radius: 10px;
         font-weight: 900;
         margin-top: 80px;
 
@@ -101,6 +108,10 @@
         }
       }
 
+      .btnIcon  *{
+        color: #fff;
+        fill: #fff;
+      }
 
       .btnClosePlayer {
         color: gold;

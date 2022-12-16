@@ -47,9 +47,17 @@ const Movies = ({id, poster_path, title, vote_average}) => {
 
       {
         watchlist.find((obj) => obj.id === id) ?
-          <button onClick={removeWatchListItem} className={MoviesStyle.item__watchListBtn}>remove</button> :
+          <button onClick={removeWatchListItem} className={MoviesStyle.item__watchListBtn}>
+            <span>remove</span>
+            <RemoveFromWl className={MoviesStyle.btnIcon} height={20} width={20}/>
+          </button>
+          :
+
           <button ref={watchlistRef} disabled={false} onClick={addItemToWatchList}
-                  className={MoviesStyle.item__watchListBtn}>add to watchlist</button>
+                  className={MoviesStyle.item__watchListBtn}>
+            <span>add to watchlist</span>
+            <AddToWl  className={MoviesStyle.btnIcon} height={20} width={20}/>
+          </button>
       }
 
     </div>

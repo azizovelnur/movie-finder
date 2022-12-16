@@ -7,8 +7,8 @@ import {ReactComponent as ClosePlayerIcon} from '../../assets/close-player.svg'
 import {ReactComponent as WatchListIcon} from '../../assets/watchlist-icon.svg'
 import {ReactComponent as OpenPlayerIcon} from '../../assets/open-player.svg'
 import {ReactComponent as NoImageFullMovie} from '../../assets/no-image-fullmovie.svg'
-import {ReactComponent as addToWl} from '../../assets/favorite-add-icon.svg'
-import {ReactComponent as removeFromWl} from '../../assets/favorite-remove-icon.svg'
+import {ReactComponent as AddToWl} from '../../assets/favorite-add-icon.svg'
+import {ReactComponent as RemoveFromWl} from '../../assets/favorite-remove-icon.svg'
 import {addItem, removeItem} from "../../redux/watchlistSlice/watchlistSlice";
 import {useDispatch, useSelector} from "react-redux";
 
@@ -93,17 +93,20 @@ const FullMovie = () => {
         }
         <div className={fullMovieStyle.imgBlock}>
 
+          {
+            fullMovie.poster_path !== null || undefined ?
           <img
             className={fullMovieStyle.imgBlock__image}
             src={`https://image.tmdb.org/t/p/w300/${fullMovie.poster_path}`}
             alt=""
-          />
+          /> : <NoImageFullMovie/>
+          }
         </div>
 
         <div className={fullMovieStyle.moreInfoBlock}>
 
-          <div className={fullMovieStyle.moreInfoBlock__titleWrapper}>
             <h2 className={fullMovieStyle.moreInfoBlock__title}>{fullMovie.title}</h2>
+          <div className={fullMovieStyle.moreInfoBlock__titleWrapper}>
             <div className={fullMovieStyle.moreInfoBlock__releaseDate}>Release {fullMovie.release_date}</div>
             <div className={fullMovieStyle.moreInfoBlock__runtime}>Runtime {fullMovie.runtime}</div>
             <div className={fullMovieStyle.moreInfoBlock__rating}>Rating {fullMovie.vote_average}</div>
@@ -126,10 +129,10 @@ const FullMovie = () => {
               watchlist.find((obj) => obj.id === Number(id))
                 ?
                 <button className={fullMovieStyle.btnAddToWatchList} onClick={removeFromWatchList}>remove from
-                  watchlist <WatchListIcon height={40} width={50}/></button>
+                  watchlist <RemoveFromWl className={fullMovieStyle.btnIcon} height={40} width={50}/></button>
                 :
                 <button className={fullMovieStyle.btnAddToWatchList} onClick={addItemToWatchList}>Add to
-                  watchlist <WatchListIcon height={40} width={50}/></button>
+                  watchlist<AddToWl className={fullMovieStyle.btnIcon} height={40} width={50}/></button>
             }
 
 
