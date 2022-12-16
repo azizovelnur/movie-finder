@@ -11,34 +11,27 @@ const watchlistSlice = createSlice({
   initialState,
 
   reducers: {
-    setSavedMovies: (state) => {
-      state.watchlist = state.watchlist.filter((movie) => {
-        if (movie.isSaved) {
-          return movie
-        }
-      })
-    },
-
     addItem(state, action) {
-      const movie = state.watchlist.find((obj) => obj.id === action.payload.id);
+      const movies = state.watchlist.filter((obj) => obj.id !== action.payload.id);
+      state.watchlist = [...movies, action.payload]
 
-      if (movie) {
-        movie.isSaved = !movie.isSaved
-      } else {
-        state.watchlist.push({
-          ...action.payload,
-          isSaved: true
-        })
-      }
+      const jsonWatchListElements = JSON.stringify(state.watchlist);
+      localStorage.setItem('watchlistItemLC', jsonWatchListElements)
     },
+    removeItem(state, action) {
+      state.watchlist = state.watchlist.filter((item) => item.id !== action.payload)
+
+      const jsonWatchListElements = JSON.stringify(state.watchlist);
+      localStorage.setItem('watchlistItemLC', jsonWatchListElements)
+    },
+
   },
 
 
 })
 
-export const findMovieById = (id) => (state) => state.watchList.watchlist.find((obj) => obj.id === id)
 
-export const {addItem,setSavedMovies} = watchlistSlice.actions
+export const {addItem, removeItem} = watchlistSlice.actions
 
 
 export default watchlistSlice.reducer

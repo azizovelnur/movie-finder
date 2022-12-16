@@ -8,7 +8,7 @@ import {ReactComponent as WatchListIcon} from '../../assets/watchlist-icon.svg'
 import {ReactComponent as OpenPlayerIcon} from '../../assets/open-player.svg'
 import {ReactComponent as addToWl} from '../../assets/favorite-add-icon.svg'
 import {ReactComponent as removeFromWl} from '../../assets/favorite-remove-icon.svg'
-import {addItem, findMovieById, setSavedMovies} from "../../redux/watchlistSlice/watchlistSlice";
+import {addItem, removeItem} from "../../redux/watchlistSlice/watchlistSlice";
 import {useDispatch, useSelector} from "react-redux";
 
 const FullMovie = () => {
@@ -16,17 +16,11 @@ const FullMovie = () => {
   const [fullMovie, setFullMovie] = useState({})
   const [movieTrailer, setMovieTrailer] = useState('')
   const [playerTrailer, setPlayerTrailer] = useState(false)
-
-
+  const {watchlist} = useSelector(state => state.watchList)
 
   const {id} = useParams()
-  const savedMovie = useSelector(findMovieById(Number(id)))
-  const isSaved = savedMovie?.isSaved === true ? 'Remove from Watchlist' : 'Add to Watchlist'
 
-  // const [isLoadingGenres, setIsLoadingGenres] = useState(false)
-  // const navigateHome = useNavigate()
   const dispatch = useDispatch()
-
 
 
   useEffect(() => {
@@ -49,7 +43,6 @@ const FullMovie = () => {
       try {
         const data = await axios.get(`https://api.themoviedb.org/3/movie/${id}?api_key=dfd3c55a40f798c4ac314d4aeaf609ea&append_to_response=videos`)
         setMovieTrailer(data.data.videos.results[0].key)
-        // setIsLoadingGenres(true)
       } catch (err) {
         console.log(err)
       }
@@ -76,7 +69,10 @@ const FullMovie = () => {
 
   const addItemToWatchList = () => {
     dispatch(addItem({...fullMovie}))
-    dispatch(setSavedMovies())
+  }
+
+  const removeFromWatchList = () => {
+    dispatch(removeItem(Number(id)))
   }
 
 
@@ -110,14 +106,6 @@ const FullMovie = () => {
             <div className={fullMovieStyle.moreInfoBlock__releaseDate}>Release {fullMovie.release_date}</div>
             <div className={fullMovieStyle.moreInfoBlock__runtime}>Runtime {fullMovie.runtime}</div>
             <div className={fullMovieStyle.moreInfoBlock__rating}>Rating {fullMovie.vote_average}</div>
-
-            {/*{*/}
-            {/*  isLoadingGenres ? <div className={fullMovieStyle.moreInfoBlock__genres}>*/}
-            {/*  genres {fullMovie.genres.map((value) => <div key={value.id}>{value.name}</div>)}*/}
-            {/*  </div> : <div></div>*/}
-            {/*}*/}
-
-
           </div>
 
 
@@ -133,14 +121,17 @@ const FullMovie = () => {
             </button>
 
 
-            <button className={fullMovieStyle.btnAddToWatchList} onClick={addItemToWatchList}>
+            {
+              watchlist.find((obj) => obj.id === Number(id))
+                ?
+                <button className={fullMovieStyle.btnAddToWatchList} onClick={removeFromWatchList}>remove from
+                  watchlist <WatchListIcon height={40} width={50}/></button>
+                :
+                <button className={fullMovieStyle.btnAddToWatchList} onClick={addItemToWatchList}>Add to
+                  watchlist <WatchListIcon height={40} width={50}/></button>
+            }
 
-              {
-                isSaved
-              }
-              <WatchListIcon height={30} width={30}/>
 
-            </button>
           </div>
 
           <button className={playerTrailer ? fullMovieStyle.btnClosePlayer : fullMovieStyle.btnCloseHide}
