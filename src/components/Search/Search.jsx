@@ -4,7 +4,7 @@ import find from '../../assets/find.svg'
 import {setSearchValue} from "../../redux/searchMoviesSlice/searchMoviesSlice";
 import {useDispatch, useSelector} from "react-redux";
 import debounce from "lodash/debounce";
-import SearchList from "./SearchList/SearchList"; //todo import from deboune.js
+import SearchList from "./SearchList/SearchList";
 
 
 const Search = () => {
@@ -14,11 +14,11 @@ const Search = () => {
   const dispatch = useDispatch()
 
   const searchRes = useRef()
-
+  const inputRef = useRef()
 
 
   const addSearchValue = useCallback(
-    debounce( (findValue) => {
+    debounce((findValue) => {
       dispatch(setSearchValue(findValue))
     }, 1000),
     []
@@ -34,11 +34,10 @@ const Search = () => {
   }
 
 
-
   // useEffect(() => {
   //
   //   const handleClickOutside = (event) => {
-  //     if (!event.path.includes(searchRes.current)) {
+  //     if (!event.composedPath().includes(searchRes.current) && !event.composedPath().includes(inputRef.current)) {
   //       searchRes.current.style.display = 'none'
   //       setSearchMovie('')
   //     }
@@ -50,11 +49,9 @@ const Search = () => {
   // }, [])
 
 
-
-
   return (
     <>
-      <div className={SearchS.search}>
+      <div className={SearchS.search} ref={inputRef}>
         <img className={SearchS.search__find} src={find} alt="find"/>
         <input
           className={SearchS.search__input}

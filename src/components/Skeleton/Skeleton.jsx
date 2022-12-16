@@ -2,7 +2,7 @@ import React from 'react';
 import ContentLoader from 'react-content-loader';
 import MoviesStyle from "../Movies/Movies.module.scss";
 
-const Skeleton = () => (
+export const Skeleton = () => (
   <ContentLoader
     className={MoviesStyle.item}
     speed={2}
@@ -12,4 +12,12 @@ const Skeleton = () => (
   </ContentLoader>
 );
 
-export default Skeleton;
+
+export const SkeletonsSearchList = () => (
+  <ContentLoader
+    speed={2}
+    viewBox="0 0 400 40"
+    backgroundColor="gold"
+    foregroundColor="#ecebeb">
+  </ContentLoader>
+);

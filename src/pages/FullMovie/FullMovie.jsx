@@ -6,6 +6,7 @@ import YouTube from "react-youtube";
 import {ReactComponent as ClosePlayerIcon} from '../../assets/close-player.svg'
 import {ReactComponent as WatchListIcon} from '../../assets/watchlist-icon.svg'
 import {ReactComponent as OpenPlayerIcon} from '../../assets/open-player.svg'
+import {ReactComponent as NoImageFullMovie} from '../../assets/no-image-fullmovie.svg'
 import {ReactComponent as addToWl} from '../../assets/favorite-add-icon.svg'
 import {ReactComponent as removeFromWl} from '../../assets/favorite-remove-icon.svg'
 import {addItem, removeItem} from "../../redux/watchlistSlice/watchlistSlice";

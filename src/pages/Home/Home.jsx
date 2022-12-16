@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import Skeleton from "../../components/Skeleton/Skeleton";
+import { Skeleton } from "../../components/Skeleton/Skeleton";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchSearchMovies} from "../../redux/searchMoviesSlice/searchMoviesSlice";
 import Movies from "../../components/Movies/Movies";
