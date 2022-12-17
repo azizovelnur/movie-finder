@@ -12,7 +12,7 @@ const SearchList = ({id, poster_path, title}) => {
   console.log(status)
   return (
 
-    ( status === 'loading' || status === '' ) ? <SkeletonsSearchList/> :
+    ( status === 'loading') ? <SkeletonsSearchList/> :
 
     <Link className={SearchListStyle.link} to={`movie/${id}`}>
       <div className={SearchListStyle.item}>

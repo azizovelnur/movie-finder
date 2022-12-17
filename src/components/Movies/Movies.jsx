@@ -1,6 +1,5 @@
 import React from 'react';
 import MoviesStyle from './Movies.module.scss'
-import {useRef} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {addItem, removeItem} from "../../redux/watchlistSlice/watchlistSlice";
 import {ReactComponent as AddToWl} from '../../assets/favorite-add-icon.svg'
@@ -14,7 +13,6 @@ const Movies = ({id, poster_path, title, vote_average}) => {
 
   const dispatch = useDispatch()
 
-  const watchlistRef = useRef()
 
   const addItemToWatchList = () => {
     dispatch(addItem({poster_path, title, vote_average, id}))
@@ -53,7 +51,7 @@ const Movies = ({id, poster_path, title, vote_average}) => {
           </button>
           :
 
-          <button ref={watchlistRef} disabled={false} onClick={addItemToWatchList}
+          <button onClick={addItemToWatchList}
                   className={MoviesStyle.item__watchListBtn}>
             <span>add to watchlist</span>
             <AddToWl  className={MoviesStyle.btnIcon} height={20} width={20}/>

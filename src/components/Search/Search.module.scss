@@ -2,7 +2,7 @@
   position: relative;
 
   .result {
-    display: none;
+    display: block;
     top: 44px;
     height: 400px;
     width: 380px;
@@ -18,14 +18,6 @@
       margin-bottom: 6px;
     }
   }
-
-  //&__result:hover {
-  //  display: block;
-  //  min-height: 200px;
-  //  width: 400px;
-  //  background-color: #625555;
-  //  position: absolute;
-  //}
 
   &__find {
     position: absolute;

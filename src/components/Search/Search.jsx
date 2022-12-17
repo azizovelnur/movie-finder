@@ -6,6 +6,7 @@ import {useDispatch, useSelector} from "react-redux";
 import debounce from "lodash/debounce";
 import SearchList from "./SearchList/SearchList";
 import {useLocation} from "react-router-dom";
+import DropDown from "./DropDown/DropDown";
 
 
 const Search = () => {
@@ -13,9 +14,6 @@ const Search = () => {
 
   const [searchMovie, setSearchMovie] = useState('')
   const dispatch = useDispatch()
-
-  const searchRes = useRef()
-  const inputRef = useRef()
 
 
   const addSearchValue = useCallback(
@@ -28,22 +26,26 @@ const Search = () => {
   const onChangeInput = (event) => {
     setSearchMovie(event.target.value)
     addSearchValue(event.target.value)
-    searchRes.current.style.display = 'block'
-    if (event.target.value === '') {
-      searchRes.current.style.display = 'none'
-    }
   }
 
+  const inputRef = useRef()
+  const searchRes = useRef()
+  const findIcon = useRef()
 
   useEffect(() => {
 
     const handleClickOutside = (event) => {
-      if (!event.composedPath().includes(searchRes.current) && !event.composedPath().includes(inputRef.current)) {
-        searchRes.current.style.display = 'none'
+      if (
+        !event.composedPath().includes(searchRes.current)
+        &&
+        !event.composedPath().includes(inputRef.current)
+        &&
+        !event.composedPath().includes(findIcon.current)
+
+      ) {
         setSearchMovie('')
       }
     }
-
 
     document.body.addEventListener('click', handleClickOutside)
 
@@ -53,20 +55,25 @@ const Search = () => {
 
   return (
     <>
-      <div className={SearchS.search} ref={inputRef}>
-        <img className={SearchS.search__find} src={find} alt="find"/>
+      <div className={SearchS.search}>
+        <img ref={findIcon} className={SearchS.search__find} src={find} alt="find"/>
         <input
+          ref={inputRef}
           className={SearchS.search__input}
           value={searchMovie}
           onChange={onChangeInput}
           type="text"
-          placeholder={'find movie...'}/>
+          placeholder={'find movie...'}
+        />
+        {
+          (searchMovie !== '') ?
 
-        <div ref={searchRes} className={SearchS.result}>
-          {
-            searchMoviesData.map((obj) => <SearchList key={obj.id} {...obj}/>)
-          }
-        </div>
+            <div ref={searchRes} className={SearchS.result}>
+              {searchMoviesData.map((obj) => <SearchList key={obj.id} {...obj}/>)}
+            </div>
+
+            : ''
+        }
       </div>
     </>
   )
