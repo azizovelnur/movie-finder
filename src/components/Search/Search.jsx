@@ -54,11 +54,11 @@ const Search = () => {
 
 
   return (
-      <div className={SearchS.search}>
-        <img ref={findIcon} className={SearchS.search__find} src={find} alt="find"/>
+      <div className={'relative'}>
+        <img ref={findIcon} className={'absolute h-[26px] w-[26px] opacity-70 top-[4px] left-[6px]'} src={find} alt="find"/>
         <input
           ref={inputRef}
-          className={SearchS.search__input}
+          className={'pl-[42px] w-[380px] h-[38px] rounded-[10px] border-none outline-none bg-[#090909]'}
           value={searchMovie}
           onChange={onChangeInput}
           type="text"
@@ -68,8 +68,12 @@ const Search = () => {
         {
           (searchMovie !== '') &&
 
-            <div ref={searchRes} className={SearchS.result}>
-              {searchMoviesData.map((obj) => <SearchList key={obj.id} {...obj}/>)}
+            <div
+              ref={searchRes}
+              className={'absolute block overflow-scroll overflow-x-hidden bg-[#1e1e1e] top-[44px] h-[400px] w-[380px] rounded-[4px]'}>
+              {
+                searchMoviesData.map((obj) => <SearchList key={obj.id} {...obj}/>)
+              }
             </div>
 
         }

@@ -4,7 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {fetchSearchMovies} from "../../redux/searchMoviesSlice/searchMoviesSlice";
 import Movies from "../../components/Movies/Movies";
 import MoviesStyle from '../../components/Movies/Movies.module.scss'
-import sliderStyle from '../../components/MoviesSlider/MovieSlider.module.scss'
+// import sliderStyle from '../../components/MoviesSlider/MovieSlider.module.scss'
 import {fetchPopularMovies} from "../../redux/popularMoviesSlice/popularMoviesSlice";
 import {Swiper, SwiperSlide} from "swiper/react";
 import {A11y, Navigation, Pagination, Autoplay} from "swiper";
@@ -52,10 +52,10 @@ const Home = () => {
 
   return (
     <>
-      <section className={sliderStyle.slider}>
-        <div className={sliderStyle.slider__title}>Popular Movies</div>
+      <section className={'mb-[100px]'}>
+        <div className={'text-[30px] mb-[10px] text-center'}>Popular Movies</div>
         <Swiper
-          className={sliderStyle.slider__items}
+          className={'rounded-[20px] relative'}
           modules={[Navigation, Pagination, A11y, Autoplay]}
           spaceBetween={1}
           slidesPerView={1}
@@ -75,9 +75,9 @@ const Home = () => {
         </Swiper>
       </section>
 
-      <section className={MoviesStyle.movies}>
-        <div className={MoviesStyle.movies__title}>Top Rated</div>
-        <div className={MoviesStyle.movies__items}>
+      <section>
+        <div className={'text-[36px] text-center'}>Top Rated</div>
+        <div className={'flex flex-wrap'}>
           {
             status === 'loading' ? skeletons : topRatedMovies
           }

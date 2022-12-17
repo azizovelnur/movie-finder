@@ -1,5 +1,5 @@
 import React from 'react';
-import MoviesStyle from './Movies.module.scss'
+// import MoviesStyle from './Movies.module.scss'
 import {useDispatch, useSelector} from "react-redux";
 import {addItem, removeItem} from "../../redux/watchlistSlice/watchlistSlice";
 import {ReactComponent as AddToWl} from '../../assets/favorite-add-icon.svg'
@@ -28,33 +28,37 @@ const Movies = ({id, poster_path, title, vote_average}) => {
 
   return (
 
-    <div className={MoviesStyle.item}>
+    <div className={'relative flex flex-col justify-between rounded-[10px] bg-[#141414] w-[150px] h-[280px] mx-[10px] my-[30px]'}>
       <Link to={`/movie/${id}`}>
 
         <img
-          className={MoviesStyle.item__img}
+          className={
+          'block rounded-[6px] m-auto w-[150px] h-[220px] hover:scale-105 duration-300 origin-bottom'
+        }
           src={`https://image.tmdb.org/t/p/w200/${poster_path}`}
           alt=""
         />
 
       </Link>
-      <div className={MoviesStyle.item__title}>{title}</div>
+      <div className={'overflow-hidden overflow-ellipsis whitespace-nowrap text-[14px] mt-1 font-[500]'}>{title}</div>
 
-      <div className={MoviesStyle.item__rating}>{vote_average}</div>
+      {/*<div className={'absolute text-center w-[40px] h-[40px] rounded-full bg-indigo-500 right-[4px] top-[4px]'}>{vote_average}</div>*/}
 
 
       {
         watchlist.find((obj) => obj.id === id) ?
-          <button onClick={removeWatchListItem} className={MoviesStyle.item__watchListBtn}>
+          <button
+            onClick={removeWatchListItem}
+            className={'flex items-center justify-between cursor-pointer w-full h-[30px] text-white p-[10px] rounded-[5px] bg-indigo-500 m-auto text-[14px] font-[700]'}>
             <span>remove</span>
-            <RemoveFromWl className={MoviesStyle.btnIcon} height={20} width={20}/>
+            <RemoveFromWl className={'text-white fill-white'} height={20} width={20}/>
           </button>
           :
 
           <button onClick={addItemToWatchList}
-                  className={MoviesStyle.item__watchListBtn}>
-            <span>add to watchlist</span>
-            <AddToWl  className={MoviesStyle.btnIcon} height={20} width={20}/>
+                  className={'flex items-center justify-between cursor-pointer w-full h-[30px] p-[10px] text-white rounded-[5px] text-[14px]  bg-indigo-500 m-auto font-[700]'}>
+            <span>add</span>
+            <AddToWl className={'text-white fill-white'} height={20} width={20}/>
           </button>
       }
 

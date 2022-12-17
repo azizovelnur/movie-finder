@@ -12,8 +12,8 @@ const WatchList = () => {
 
 
   return (
-    <section className={wlStyle.movies}>
-      <div className={wlStyle.movies__items}>
+    <section>
+      <div className={'flex flex-wrap'}>
         {
           watchListItem
         }

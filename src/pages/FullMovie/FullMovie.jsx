@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import fullMovieStyle from './FullMovie.module.scss'
+// import fullMovieStyle from './FullMovie.module.scss'
 import axios from "axios";
 import {useNavigate, useParams} from "react-router-dom";
 import YouTube from "react-youtube";
@@ -55,7 +55,7 @@ const FullMovie = () => {
   const watchTrailer = () => {
     return (
       <YouTube
-        className={fullMovieStyle.ytBlock}
+        className={'absolute left-[50%] translate-x-[-50%]'}
         videoId={`${movieTrailer}`}
         opts={{
           width: '600px',
@@ -81,46 +81,46 @@ const FullMovie = () => {
 
 
     <section
-      className={fullMovieStyle.fullMovie}
+      className={"after:absolute after:bg-[#3a3734] after:z-[-1] after:inset-0 after:opacity-90 relative flex items-center my-[30px] h-[600px] isolate rounded-[20px]"}
       style={{backgroundImage: `url(https://image.tmdb.org/t/p/w1280/${fullMovie.backdrop_path})`}}
     >
 
 
-      <div className={fullMovieStyle.items}>
+      <div className={'flex justify-between items-center mx-[30px]'}>
 
         {
           playerTrailer && watchTrailer()
         }
-        <div className={fullMovieStyle.imgBlock}>
+        <div>
 
           {
             fullMovie.poster_path !== null || undefined ?
           <img
-            className={fullMovieStyle.imgBlock__image}
+            className={'rounded-[10px]'}
             src={`https://image.tmdb.org/t/p/w300/${fullMovie.poster_path}`}
             alt=""
           /> : <NoImageFullMovie/>
           }
         </div>
 
-        <div className={fullMovieStyle.moreInfoBlock}>
+        <div className={'h-[450px] w-[800px] ml-[37px]'}>
 
-            <h2 className={fullMovieStyle.moreInfoBlock__title}>{fullMovie.title}</h2>
-          <div className={fullMovieStyle.moreInfoBlock__titleWrapper}>
-            <div className={fullMovieStyle.moreInfoBlock__releaseDate}>Release {fullMovie.release_date}</div>
-            <div className={fullMovieStyle.moreInfoBlock__runtime}>Runtime {fullMovie.runtime}</div>
-            <div className={fullMovieStyle.moreInfoBlock__rating}>Rating {fullMovie.vote_average}</div>
+            <h2 className={'text-[30px] mr-[40px] mb-[20px]'}>{fullMovie.title}</h2>
+          <div className={'flex items-center'}>
+            <div className={'bg-[#1c1c1c] rounded-[4px] p-[4px] ml-[10px] cursor-pointer'}>Release {fullMovie.release_date}</div>
+            <div className={'bg-[#1c1c1c] rounded-[4px] p-[4px] ml-[10px] cursor-pointer'}>Runtime {fullMovie.runtime}</div>
+            <div className={'bg-[#1c1c1c] rounded-[4px] p-[4px] ml-[10px] cursor-pointer'}>Rating {fullMovie.vote_average}</div>
           </div>
 
 
-          <div className={fullMovieStyle.moreInfoBlock__overview}>
-            <h3>Overview</h3>
+          <div className={'mt-[100px] text-[16px]'}>
+            <h3 className={'text-[26px] mb-[10px]'}>Overview</h3>
             {fullMovie.overview}
           </div>
 
 
-          <div className={fullMovieStyle.buttons}>
-            <button className={fullMovieStyle.btnOpenPlayer} onClick={() => setPlayerTrailer(true)}><OpenPlayerIcon
+          <div className={'flex justify-between'}>
+            <button className={'flex items-center p-[10px] border-none text-[18px] cursor-pointer rounded-[10px] mt-[80px]'} onClick={() => setPlayerTrailer(true)}><OpenPlayerIcon
               height={40} width={40}/>Open Trailer
             </button>
 
@@ -128,17 +128,18 @@ const FullMovie = () => {
             {
               watchlist.find((obj) => obj.id === Number(id))
                 ?
-                <button className={fullMovieStyle.btnAddToWatchList} onClick={removeFromWatchList}>remove from
-                  watchlist <RemoveFromWl className={fullMovieStyle.btnIcon} height={40} width={50}/></button>
+                <button
+                  className={'flex items-center border-none cursor-pointer rounded-[10px] mt-[80px] text-[18px] bg-[#1c1c1c]'} onClick={removeFromWatchList}>remove from
+                  watchlist <RemoveFromWl className={''} height={40} width={50}/></button>
                 :
-                <button className={fullMovieStyle.btnAddToWatchList} onClick={addItemToWatchList}>Add to
-                  watchlist<AddToWl className={fullMovieStyle.btnIcon} height={40} width={50}/></button>
+                <button className={'flex items-center border-none cursor-pointer rounded-[10px] mt-[80px] text-[18px] bg-[#1c1c1c]'} onClick={addItemToWatchList}>Add to
+                  watchlist<AddToWl className={''} height={40} width={50}/></button>
             }
 
 
           </div>
 
-          <button className={playerTrailer ? fullMovieStyle.btnClosePlayer : fullMovieStyle.btnCloseHide}
+          <button className={playerTrailer ? 'absolute top-[20px] right-[30px] block cursor-pointer bg-none border-none' : 'hidden'}
                   onClick={() => setPlayerTrailer(false)}><ClosePlayerIcon height={40} width={40}/></button>
 
 

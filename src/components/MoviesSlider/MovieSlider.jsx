@@ -9,13 +9,12 @@ import {Link} from "react-router-dom";
 const MovieSlider = ({obj}) => {
   return (
     <Link to={`movie/${obj.id}`}>
-      <div className={sliderStyle.slider__item}>
-        <div className={sliderStyle.title}>{obj.title}</div>
-        <img className={sliderStyle.image} src={`https://image.tmdb.org/t/p/w1280/${obj.backdrop_path}`} alt=""/>
+      <div className={'text-white w-full h-[470px]'}>
+        <div className={'absolute top-[10px] left-[10px] text-[30px]'}>{obj.title}</div>
+        <img className={'w-full'} src={`https://image.tmdb.org/t/p/w1280/${obj.backdrop_path}`} alt=""/>
       </div>
     </Link>
+  )
+}
 
-  );
-};
-
-export default MovieSlider;
+export default MovieSlider
