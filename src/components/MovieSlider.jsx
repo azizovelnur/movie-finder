@@ -1,5 +1,4 @@
 import React from 'react';
-import sliderStyle from './MovieSlider.module.scss'
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';

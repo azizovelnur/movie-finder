@@ -1,10 +1,10 @@
 import React from "react";
 // import './scss/App.scss'
-import Home from "./pages/Home/Home";
+import Home from "./pages/Home";
 import {Route, Routes} from "react-router-dom";
-import Layout from "./components/Layout/Layout";
-import WatchList from "./pages/WatchList/WatchList";
-import FullMovie from "./pages/FullMovie/FullMovie";
+import Layout from "./components/Layout";
+import WatchList from "./pages/WatchList";
+import FullMovie from "./pages/FullMovie";
 
 function App() {
 

@@ -1,6 +1,5 @@
 import React from 'react';
 import ContentLoader from 'react-content-loader';
-import MoviesStyle from "../Movies/Movies.module.scss";
 
 export const Skeleton = () => (
   <ContentLoader

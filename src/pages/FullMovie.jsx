@@ -1,15 +1,14 @@
 import React, {useEffect, useState} from 'react'
-// import fullMovieStyle from './FullMovie.module.scss'
 import axios from "axios";
 import {useNavigate, useParams} from "react-router-dom";
 import YouTube from "react-youtube";
-import {ReactComponent as ClosePlayerIcon} from '../../assets/close-player.svg'
-import {ReactComponent as WatchListIcon} from '../../assets/watchlist-icon.svg'
-import {ReactComponent as OpenPlayerIcon} from '../../assets/open-player.svg'
-import {ReactComponent as NoImageFullMovie} from '../../assets/no-image-fullmovie.svg'
-import {ReactComponent as AddToWl} from '../../assets/favorite-add-icon.svg'
-import {ReactComponent as RemoveFromWl} from '../../assets/favorite-remove-icon.svg'
-import {addItem, removeItem} from "../../redux/watchlistSlice/watchlistSlice";
+import {ReactComponent as ClosePlayerIcon} from '../assets/close-player.svg'
+import {ReactComponent as WatchListIcon} from '../assets/watchlist-icon.svg'
+import {ReactComponent as OpenPlayerIcon} from '../assets/open-player.svg'
+import {ReactComponent as NoImageFullMovie} from '../assets/no-image-fullmovie.svg'
+import {ReactComponent as AddToWl} from '../assets/favorite-add-icon.svg'
+import {ReactComponent as RemoveFromWl} from '../assets/favorite-remove-icon.svg'
+import {addItem, removeItem} from "../redux/watchlistSlice/watchlistSlice";
 import {useDispatch, useSelector} from "react-redux";
 
 const FullMovie = () => {

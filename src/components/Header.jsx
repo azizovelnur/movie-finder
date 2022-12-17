@@ -1,7 +1,7 @@
 import React from 'react'
 // import HeaderS from './Header.module.scss'
-import {ReactComponent as Logo} from '../../assets/movie-icon.svg'
-import Search from "../Search/Search"
+import {ReactComponent as Logo} from '../assets/movie-icon.svg'
+import Search from "./Search/Search"
 import {Link, NavLink, useLocation} from "react-router-dom";
 
 const Header = () => {

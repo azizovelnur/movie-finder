@@ -1,7 +1,6 @@
 import React from 'react';
 import {useSelector} from "react-redux";
-import wlStyle from '../../components/Movies/Movies.module.scss'
-import Movies from "../../components/Movies/Movies";
+import Movies from "../components/Movies";
 
 const WatchList = () => {
 

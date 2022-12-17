@@ -1,12 +1,10 @@
 import React, {useCallback, useEffect, useRef, useState} from 'react';
-import SearchS from './Search.module.scss'
 import find from '../../assets/find.svg'
 import {setSearchValue} from "../../redux/searchMoviesSlice/searchMoviesSlice";
 import {useDispatch, useSelector} from "react-redux";
 import debounce from "lodash/debounce";
 import SearchList from "./SearchList/SearchList";
 import {useLocation} from "react-router-dom";
-import DropDown from "./DropDown/DropDown";
 
 
 const Search = () => {

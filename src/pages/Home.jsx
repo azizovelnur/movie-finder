@@ -1,11 +1,9 @@
 import React, {useEffect} from 'react';
-import { Skeleton } from "../../components/Skeleton/Skeleton";
+import { Skeleton } from "../components/Skeleton";
 import {useDispatch, useSelector} from "react-redux";
-import {fetchSearchMovies} from "../../redux/searchMoviesSlice/searchMoviesSlice";
-import Movies from "../../components/Movies/Movies";
-import MoviesStyle from '../../components/Movies/Movies.module.scss'
-// import sliderStyle from '../../components/MoviesSlider/MovieSlider.module.scss'
-import {fetchPopularMovies} from "../../redux/popularMoviesSlice/popularMoviesSlice";
+import {fetchSearchMovies} from "../redux/searchMoviesSlice/searchMoviesSlice";
+import Movies from "../components/Movies";
+import {fetchPopularMovies} from "../redux/popularMoviesSlice/popularMoviesSlice";
 import {Swiper, SwiperSlide} from "swiper/react";
 import {A11y, Navigation, Pagination, Autoplay} from "swiper";
 
@@ -14,8 +12,8 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 import 'swiper/css/autoplay'
-import {fetchTopRatedMovies} from "../../redux/topRatedMoviesSlice/topRatedMoviesSlice";
-import MovieSlider from "../../components/MoviesSlider/MovieSlider";
+import {fetchTopRatedMovies} from "../redux/topRatedMoviesSlice/topRatedMoviesSlice";
+import MovieSlider from "../components/MovieSlider";
 
 const Home = () => {
   const dispatch = useDispatch()

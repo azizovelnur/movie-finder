@@ -2,7 +2,7 @@ import React from 'react';
 // import SearchListStyle from './SearchList.module.scss'
 import {Link} from "react-router-dom";
 import {useSelector} from "react-redux";
-import {SkeletonsSearchList} from "../../Skeleton/Skeleton";
+import {SkeletonsSearchList} from "../../Skeleton";
 import {ReactComponent as NoImageFullMovie} from '../../../assets/no-image-fullmovie.svg'
 
 const SearchList = ({id, poster_path, title}) => {
