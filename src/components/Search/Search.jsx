@@ -47,14 +47,13 @@ const Search = () => {
       }
     }
 
-    document.body.addEventListener('click', handleClickOutside)
+    document.addEventListener('click', handleClickOutside)
 
 
   }, [])
 
 
   return (
-    <>
       <div className={SearchS.search}>
         <img ref={findIcon} className={SearchS.search__find} src={find} alt="find"/>
         <input
@@ -65,17 +64,16 @@ const Search = () => {
           type="text"
           placeholder={'find movie...'}
         />
+
         {
-          (searchMovie !== '') ?
+          (searchMovie !== '') &&
 
             <div ref={searchRes} className={SearchS.result}>
               {searchMoviesData.map((obj) => <SearchList key={obj.id} {...obj}/>)}
             </div>
 
-            : ''
         }
       </div>
-    </>
   )
 }
 
