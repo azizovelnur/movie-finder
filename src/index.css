@@ -7,4 +7,5 @@ body {
     background-color: #1E1E1E;
     color: #fff;
     font-family: 'Poppins', sans-serif;
+    overflow-y: scroll;
 }

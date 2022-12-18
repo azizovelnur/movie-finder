@@ -5,7 +5,7 @@ import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 import {Link} from "react-router-dom";
 
-const MovieSlider = ({obj}) => {
+export const MovieSlider = ({obj}) => {
   return (
     <Link to={`movie/${obj.id}`}>
       <div className={'text-white w-full h-[470px]'}>
@@ -15,5 +15,3 @@ const MovieSlider = ({obj}) => {
     </Link>
   )
 }
-
-export default MovieSlider

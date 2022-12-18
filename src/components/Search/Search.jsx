@@ -1,13 +1,11 @@
 import React, {useCallback, useEffect, useRef, useState} from 'react';
-import find from '../../assets/find.svg'
-import {setSearchValue} from "../../redux/searchMoviesSlice/searchMoviesSlice";
+import find from '../../assets/icons/find.svg'
+import {setSearchValue} from "../../redux/searchMoviesSlice";
 import {useDispatch, useSelector} from "react-redux";
-import debounce from "lodash/debounce";
-import SearchList from "./SearchList/SearchList";
-import {useLocation} from "react-router-dom";
+import debounce from "lodash/debounce"
+import {SearchList} from "./SearchList/SearchList"
 
-
-const Search = () => {
+export const Search = () => {
   const {searchMoviesData} = useSelector((state) => state.searchMovies)
 
   const [searchMovie, setSearchMovie] = useState('')
@@ -78,5 +76,3 @@ const Search = () => {
       </div>
   )
 }
-
-export default Search

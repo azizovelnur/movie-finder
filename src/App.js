@@ -1,12 +1,12 @@
 import React from "react";
 // import './scss/App.scss'
-import Home from "./pages/Home";
 import {Route, Routes} from "react-router-dom";
-import Layout from "./components/Layout";
-import WatchList from "./pages/WatchList";
-import FullMovie from "./pages/FullMovie";
+import { Home } from "./pages/Home";
+import { Layout } from "./components/Layout";
+import { WatchList } from "./pages/WatchList";
+import { FullMovie } from "./pages/FullMovie";
 
-function App() {
+export function App() {
 
   return (
     <div>
@@ -23,4 +23,3 @@ function App() {
   )
 }
 
-export default App

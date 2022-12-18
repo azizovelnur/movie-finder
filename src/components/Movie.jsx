@@ -1,11 +1,11 @@
 import React from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import {addItem, removeItem} from "../redux/watchlistSlice/watchlistSlice";
-import {ReactComponent as AddToWl} from '../assets/favorite-add-icon.svg'
-import {ReactComponent as RemoveFromWl} from '../assets/favorite-remove-icon.svg'
+import {addItem, removeItem} from "../redux/watchlistSlice";
+import {ReactComponent as AddToWl} from '../assets/icons/favorite-add-icon.svg'
+import {ReactComponent as RemoveFromWl} from '../assets/icons/favorite-remove-icon.svg'
 import {Link} from "react-router-dom";
 
-const Movie = ({id, poster_path, title, vote_average}) => {
+export const Movie = ({id, poster_path, title, vote_average}) => {
 
 
   const {watchlist} = useSelector(state => state.watchList)
@@ -64,7 +64,5 @@ const Movie = ({id, poster_path, title, vote_average}) => {
 
     </div>
 
-  );
-};
-
-export default Movie;
+  )
+}

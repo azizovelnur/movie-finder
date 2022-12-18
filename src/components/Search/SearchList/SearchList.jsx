@@ -1,10 +1,10 @@
-import React from 'react';
-import {Link} from "react-router-dom";
-import {useSelector} from "react-redux";
-import {SkeletonSearchList} from "../../Skeleton";
-import {ReactComponent as NoImageFullMovie} from '../../../assets/no-image-fullmovie.svg'
+import React from 'react'
+import {Link} from "react-router-dom"
+import {useSelector} from "react-redux"
+import {SkeletonSearchList} from "../../Skeleton"
+import {ReactComponent as NoImageFullMovie} from '../../../assets/icons/no-image-fullmovie.svg'
 
-const SearchList = ({id, poster_path, title}) => {
+export const SearchList = ({id, poster_path, title}) => {
 
   const {status} = useSelector((state) => state.searchMovies)
 
@@ -26,7 +26,5 @@ const SearchList = ({id, poster_path, title}) => {
       </div>
     </Link>
 
-  );
-};
-
-export default SearchList;
+  )
+}
