@@ -12,7 +12,7 @@ export const fetchPopularMovies = createAsyncThunk(
 
 const initialState = {
   popularMovies: [],
-  status: ''
+  popularMoviesStatus: ''
 }
 
 const popularMovieSlice = createSlice({
@@ -22,17 +22,16 @@ const popularMovieSlice = createSlice({
   extraReducers: (builder) => {
 
     builder.addCase(fetchPopularMovies.pending, (state) => {
-      state.status = 'loading'
-      console.log(state.status)
+      state.popularMoviesStatus = 'loading'
     })
 
     builder.addCase(fetchPopularMovies.fulfilled, (state, action) => {
-      state.status = 'loaded'
+      state.popularMoviesStatus = 'loaded'
       state.popularMovies = action.payload
     })
 
     builder.addCase(fetchPopularMovies.rejected, (state) => {
-      state.status = 'error'
+      state.popularMoviesStatus = 'error'
     })
 
   }

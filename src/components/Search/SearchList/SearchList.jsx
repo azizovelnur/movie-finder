@@ -1,8 +1,7 @@
 import React from 'react';
-// import SearchListStyle from './SearchList.module.scss'
 import {Link} from "react-router-dom";
 import {useSelector} from "react-redux";
-import {SkeletonsSearchList} from "../../Skeleton";
+import {SkeletonSearchList} from "../../Skeleton";
 import {ReactComponent as NoImageFullMovie} from '../../../assets/no-image-fullmovie.svg'
 
 const SearchList = ({id, poster_path, title}) => {
@@ -11,11 +10,10 @@ const SearchList = ({id, poster_path, title}) => {
 
   return (
 
-    ( status === 'loading' ) ? <SkeletonsSearchList/> :
+    ( status === 'loading' ) ? <SkeletonSearchList/> :
 
     <Link className={'no-underline'} to={`movie/${id}`}>
       <div className={'flex justify-between items-center m-[10px] cursor-pointer text-[14px] bg-[#181717] hover:bg-[#000]'}>
-
         { (poster_path !== null || undefined) ?
           <img
           className={'h-[60px] w-[40px] mr-[20px]'}
@@ -24,10 +22,7 @@ const SearchList = ({id, poster_path, title}) => {
         />
         : <NoImageFullMovie width={40} height={60}/>
         }
-
-
         <div className={'text-[14px] text-right'}>{title}</div>
-
       </div>
     </Link>
 
