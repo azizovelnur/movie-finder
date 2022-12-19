@@ -8,7 +8,7 @@ export const Header = () => {
   const locationPath = useLocation()
 
   return (
-    <header className={'z-50 fixed w-full mb-[200px] text-[16px] bg-[#141414] text-[#fff]'}>
+    <header className={'z-10 fixed w-full mb-[200px] text-[16px] bg-[#141414] text-[#fff]'}>
 
       <div className={'container mx-auto max-w-[1200px]'}>
         <div className={'flex justify-between items-center h-[70px]'}>
