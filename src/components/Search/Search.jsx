@@ -24,55 +24,44 @@ export const Search = () => {
     addSearchValue(event.target.value)
   }
 
-  const inputRef = useRef()
-  const searchRes = useRef()
-  const findIcon = useRef()
+  const inputBlockRef = useRef()
 
   useEffect(() => {
-
     const handleClickOutside = (event) => {
-      if (
-        !event.composedPath().includes(searchRes.current)
-        &&
-        !event.composedPath().includes(inputRef.current)
-        &&
-        !event.composedPath().includes(findIcon.current)
-
-      ) {
+      if (!event.composedPath().includes(inputBlockRef.current)) {
         setSearchMovie('')
       }
     }
+    document.addEventListener('mousedown', handleClickOutside)
 
-    document.addEventListener('click', handleClickOutside)
-
-
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
   }, [])
 
 
   return (
-      <div className={'relative'}>
-        <img ref={findIcon} className={'absolute h-[26px] w-[26px] opacity-70 top-[4px] left-[6px]'} src={find} alt="find"/>
-        <input
-          ref={inputRef}
-          className={'pl-[42px] w-[380px] h-[38px] rounded-[10px] border-none outline-none bg-[#090909]'}
-          value={searchMovie}
-          onChange={onChangeInput}
-          type="text"
-          placeholder={'find movie...'}
-        />
+    <div ref={inputBlockRef} className={'relative'}>
+      <img className={'absolute h-[26px] w-[26px] opacity-70 top-[4px] left-[6px]'} src={find} alt="find"/>
+      <input
+        className={'pl-[42px] w-[380px] h-[38px] rounded-[10px] border-none outline-none bg-[#090909]'}
+        value={searchMovie}
+        onChange={onChangeInput}
+        type="text"
+        placeholder={'find movie...'}
+      />
 
-        {
-          (searchMovie !== '') &&
+      {
+        (searchMovie !== '') &&
 
-            <div
-              ref={searchRes}
-              className={'absolute block overflow-scroll overflow-x-hidden bg-[#1e1e1e] top-[44px] h-[400px] w-[380px] rounded-[4px]'}>
-              {
-                searchMoviesData.map((obj) => <SearchList key={obj.id} {...obj}/>)
-              }
-            </div>
+        <div
+          className={'absolute block overflow-scroll overflow-x-hidden bg-[#1e1e1e] top-[44px] h-[400px] w-[380px] rounded-[4px]'}>
+          {
+            searchMoviesData.map((obj) => <SearchList key={obj.id} {...obj}/>)
+          }
+        </div>
 
-        }
-      </div>
+      }
+    </div>
   )
 }
