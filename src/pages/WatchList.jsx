@@ -13,7 +13,7 @@ export const WatchList = () => {
 
   return (
     <section>
-      <div className={'flex flex-wrap'}>
+      <div className={'md:flex md:flex-wrap xl:justify-start flex flex-wrap justify-around'}>
         {
           watchlist.length === 0 ? <div className={'text-4xl'}>Empty</div> : watchListItem
         }

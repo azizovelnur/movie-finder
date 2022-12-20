@@ -6,7 +6,7 @@ export const Layout = () => {
   return (
     <>
       <Header/>
-      <div className={'h-[100px]'}></div>
+      <div className={'md:h-[100px] h-[160px]'}></div>
       <div className={'container mx-auto max-w-[1200px]'}>
         <Outlet/>
       </div>

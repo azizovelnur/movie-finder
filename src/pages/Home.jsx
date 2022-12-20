@@ -44,17 +44,17 @@ export const Home = () => {
 
   return (
     <>
-      <section className={'mb-[100px]'}>
-        <div className={'text-[30px] mb-[10px] text-center'}>Popular Movies</div>
+      <section className={'mb-[100px] mx-[20px]'}>
+        <div className={'md:text-[30px] text-[20px] mb-[10px] text-center'}>Popular Movies</div>
         <Swiper
-          className={'rounded-[20px] relative'}
+          className={'md:rounded-[20px] relative rounded-[4px]'}
           modules={[Navigation, Pagination, A11y, Autoplay]}
           spaceBetween={1}
           slidesPerView={1}
           navigation
           loop={true}
           autoplay={true}
-          pagination={{clickable: true}}
+          // pagination={{clickable: true}}
         >
 
           {
@@ -66,8 +66,8 @@ export const Home = () => {
       </section>
 
       <section>
-        <div className={'text-[36px] text-center'}>Top Rated</div>
-        <div className={'flex flex-wrap'}>
+        <div className={'md:text-[36px] text-[20px] text-center'}>Top Rated</div>
+        <div className={'xl:justify-start flex flex-wrap justify-around'}>
           {
             status === 'loading' ? skeletons : topRatedMovies
           }

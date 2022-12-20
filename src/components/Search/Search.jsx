@@ -60,7 +60,7 @@ export const Search = () => {
         (searchMovie !== '') &&
 
         <div
-          className={'absolute block overflow-scroll overflow-x-hidden bg-[#1e1e1e] top-[44px] h-[400px] w-[380px] rounded-[4px]'}>
+          className={'absolute block overflow-scroll overflow-x-hidden bg-[#000] top-[44px] h-[400px] w-[380px] rounded-[4px]'}>
           {
             (status === 'loading') ? skeletonSearchList : (status === 'error') ? <div className={'text-center text-[32px] mt-[30%]'}>Not found</div> : searchMovies
           }
