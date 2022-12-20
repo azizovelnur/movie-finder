@@ -4,13 +4,16 @@ import {setSearchValue} from "../../redux/searchMoviesSlice";
 import {useDispatch, useSelector} from "react-redux";
 import debounce from "lodash/debounce"
 import {SearchList} from "./SearchList/SearchList"
+import {SkeletonSearchList} from "../Skeleton";
 
 export const Search = () => {
   const {searchMoviesData} = useSelector((state) => state.searchMovies)
 
+  const {status} = useSelector((state) => state.searchMovies)
   const [searchMovie, setSearchMovie] = useState('')
   const dispatch = useDispatch()
 
+  const skeletonSearchList = [...new Array(20)].map((_, index) => <SkeletonSearchList key={index}/>)
 
   const addSearchValue = useCallback(
     debounce((findValue) => {
@@ -57,7 +60,7 @@ export const Search = () => {
         <div
           className={'absolute block overflow-scroll overflow-x-hidden bg-[#1e1e1e] top-[44px] h-[400px] w-[380px] rounded-[4px]'}>
           {
-            searchMoviesData.map((obj) => <SearchList key={obj.id} {...obj}/>)
+            (status === 'loading') ? skeletonSearchList : searchMoviesData.map((obj) => <SearchList key={obj.id} {...obj}/>)
           }
         </div>
 

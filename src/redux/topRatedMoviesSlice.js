@@ -23,7 +23,6 @@ const topRatedMoviesSlice = createSlice({
 
     builder.addCase(fetchTopRatedMovies.pending, (state) => {
       state.status = 'loading'
-      console.log(state.status)
     })
 
     builder.addCase(fetchTopRatedMovies.fulfilled, (state, action) => {
