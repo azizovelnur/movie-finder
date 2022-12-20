@@ -6,6 +6,7 @@ export const WatchList = () => {
 
 
   const {watchlist} = useSelector((state) => state.watchList)
+  console.log(watchlist)
 
   const watchListItem = watchlist.map((item) => <Movie key={item.id} {...item}/>)
 
@@ -14,7 +15,7 @@ export const WatchList = () => {
     <section>
       <div className={'flex flex-wrap'}>
         {
-          watchListItem
+          watchlist.length === 0 ? <div className={'text-4xl'}>Empty</div> : watchListItem
         }
       </div>
     </section>

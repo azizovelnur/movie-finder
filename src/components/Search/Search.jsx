@@ -15,6 +15,8 @@ export const Search = () => {
 
   const skeletonSearchList = [...new Array(20)].map((_, index) => <SkeletonSearchList key={index}/>)
 
+  const searchMovies = searchMoviesData.map((obj) => <SearchList key={obj.id} {...obj}/>)
+
   const addSearchValue = useCallback(
     debounce((findValue) => {
       dispatch(setSearchValue(findValue))
@@ -60,7 +62,7 @@ export const Search = () => {
         <div
           className={'absolute block overflow-scroll overflow-x-hidden bg-[#1e1e1e] top-[44px] h-[400px] w-[380px] rounded-[4px]'}>
           {
-            (status === 'loading') ? skeletonSearchList : searchMoviesData.map((obj) => <SearchList key={obj.id} {...obj}/>)
+            (status === 'loading') ? skeletonSearchList : (status === 'error') ? <div className={'text-center text-[32px] mt-[30%]'}>Not found</div> : searchMovies
           }
         </div>
 

@@ -4,9 +4,13 @@ import axios from "axios";
 
 export const fetchSearchMovies = createAsyncThunk(
   'searchMovies/fetchSearchMovies',
-  async (query) => {
+  async (query, ThunkApi) => {
     const searchData = await axios.get(`https://api.themoviedb.org/3/search/movie?api_key=dfd3c55a40f798c4ac314d4aeaf609ea&query=${query}`)
-    return searchData.data.results
+
+    if (searchData.data.results.length === 0) {
+      return ThunkApi.rejectWithValue('error')
+    }
+    return ThunkApi.fulfillWithValue(searchData.data.results)
   })
 
 
@@ -30,7 +34,6 @@ const searchMoviesSlice = createSlice({
 
     builder.addCase(fetchSearchMovies.pending, (state) => {
       state.status = 'loading'
-      console.log(state.status)
     })
 
     builder.addCase(fetchSearchMovies.fulfilled, (state, action) => {
@@ -38,8 +41,8 @@ const searchMoviesSlice = createSlice({
       state.searchMoviesData = action.payload
     })
 
-    builder.addCase(fetchSearchMovies.rejected, (state) => {
-      state.status = 'error'
+    builder.addCase(fetchSearchMovies.rejected, (state, action) => {
+      state.status = action.payload
     })
 
   }
