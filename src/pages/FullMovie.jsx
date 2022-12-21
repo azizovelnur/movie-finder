@@ -61,8 +61,6 @@ export const FullMovie = () => {
           height: '100%',
           playerVars: {
             autoplay: 1,
-            controls: 0,
-
           },
         }}
       />

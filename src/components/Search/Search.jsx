@@ -1,5 +1,6 @@
 import React, {useCallback, useEffect, useRef, useState} from 'react';
 import find from '../../assets/icons/find.svg'
+import {ReactComponent as DeleteTextInput} from '../../assets/icons/close-player.svg'
 import {setSearchValue} from "../../redux/searchMoviesSlice";
 import {useDispatch, useSelector} from "react-redux";
 import debounce from "lodash/debounce"
@@ -48,8 +49,13 @@ export const Search = () => {
   return (
     <div ref={inputBlockRef} className={'relative'}>
       <img className={'absolute h-[26px] w-[26px] opacity-70 top-[4px] left-[6px]'} src={find} alt="find"/>
+      <DeleteTextInput
+        onClick={() => setSearchMovie('')}
+        className={searchMovie === '' ?
+          'hidden absolute h-[26px] cursor-pointer w-[26px] fill-white opacity-70 top-[4px] right-[6px]' :
+          'block absolute h-[26px] cursor-pointer w-[26px] fill-white opacity-70 top-[4px] right-[6px]'}/>
       <input
-        className={'pl-[42px] w-[380px] h-[38px] rounded-[10px] border-none outline-none bg-[#090909]'}
+        className={'pl-[42px] pr-[38px] w-[350px] h-[38px] rounded-[10px] border-none outline-none bg-[#090909]'}
         value={searchMovie}
         onChange={onChangeInput}
         type="text"
@@ -60,7 +66,7 @@ export const Search = () => {
         (searchMovie !== '') &&
 
         <div
-          className={'absolute block overflow-scroll overflow-x-hidden bg-[#000] top-[44px] h-[400px] w-[380px] rounded-[4px]'}>
+          className={'absolute block overflow-scroll overflow-x-hidden bg-[#000] top-[44px] h-[400px] w-full rounded-[4px]'}>
           {
             (status === 'loading') ? skeletonSearchList : (status === 'error') ? <div className={'text-center text-[32px] mt-[30%]'}>Not found</div> : searchMovies
           }

@@ -20,7 +20,7 @@ export const Header = () => {
                 onClick={() => setOpenMenu(false)}
                 to={'/'}
                 className={(navData) =>
-                  (navData.isActive ? 'opacity-100 mx-[10px]' : 'opacity-70 mx-[10px]')
+                  (navData.isActive ? 'opacity-100 mx-[10px] bg-black w-full text-center' : 'opacity-70 mx-[10px]')
                 }>
                 Home
               </NavLink>
@@ -28,7 +28,7 @@ export const Header = () => {
                 onClick={() => setOpenMenu(false)}
                 to={'watchlist'}
                 className={(navData) =>
-                  (navData.isActive ? 'opacity-100 mx-[10px]' : 'opacity-70 mx-[10px]')}>
+                  (navData.isActive ? 'opacity-100 mx-[10px] bg-black w-full text-center' : 'opacity-70 mx-[10px]')}>
                 Watchlist
               </NavLink>
 

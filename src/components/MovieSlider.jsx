@@ -10,7 +10,7 @@ export const MovieSlider = ({obj}) => {
     <Link to={`movie/${obj.id}`}>
       <div className={'sm:h-[470px] text-white w-full h-[260px]'}>
         <div className={'md:text-[30px] absolute top-[10px] left-[10px] text-[14px]'}>{obj.title}</div>
-        <img className={'w-full h-full'} src={`https://image.tmdb.org/t/p/w1280/${obj.backdrop_path}`} alt=""/>
+        <img className={'w-full h-full object-cover object-top'} src={`https://image.tmdb.org/t/p/w1280/${obj.backdrop_path}`} alt=""/>
       </div>
     </Link>
   )

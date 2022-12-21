@@ -9,3 +9,8 @@ body {
     font-family: 'Poppins', sans-serif;
     overflow-y: scroll;
 }
+
+
+:root {
+  --swiper-navigation-color: rgba(141, 141, 141, 0.8);
+}
