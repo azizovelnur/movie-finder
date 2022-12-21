@@ -5,7 +5,12 @@ import axios from "axios";
 export const fetchPopularMovies = createAsyncThunk(
   'movie/fetchPopularMovies',
   async () => {
-    const data = await axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=dfd3c55a40f798c4ac314d4aeaf609ea`)
+    const API_URL = 'https://api.themoviedb.org/3'
+    const data = await axios.get(`${API_URL}/movie/popular`, {
+      params: {
+        api_key: process.env.REACT_APP_MOVIE_API_KEY
+      }
+    })
     return data.data.results
   })
 

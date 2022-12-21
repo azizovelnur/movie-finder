@@ -1,9 +1,8 @@
 import React, {useEffect, useState} from 'react'
 import axios from "axios";
-import {useNavigate, useParams} from "react-router-dom";
+import {useParams} from "react-router-dom";
 import YouTube from "react-youtube";
 import {ReactComponent as ClosePlayerIcon} from '../assets/icons/close-player.svg'
-import {ReactComponent as WatchListIcon} from '../assets/icons/watchlist-icon.svg'
 import {ReactComponent as OpenPlayerIcon} from '../assets/icons/open-player.svg'
 import {ReactComponent as NoImageFullMovie} from '../assets/icons/no-image-fullmovie.svg'
 import {ReactComponent as AddToWl} from '../assets/icons/favorite-add-icon.svg'
@@ -26,10 +25,15 @@ export const FullMovie = () => {
   useEffect(() => {
     const fetchFullMovie = async () => {
       try {
-        const fullMovieData = await axios.get(`https://api.themoviedb.org/3/movie/${id}?api_key=dfd3c55a40f798c4ac314d4aeaf609ea`)
+
+        const API_URL = 'https://api.themoviedb.org/3'
+        const fullMovieData = await axios.get(`${API_URL}/movie/${id}`, {
+          params: {
+            api_key: process.env.REACT_APP_MOVIE_API_KEY
+          }
+        })
         setFullMovie(fullMovieData.data)
       } catch (err) {
-        // navigateHome('/')
         console.log(err)
       }
     }
@@ -41,7 +45,8 @@ export const FullMovie = () => {
   useEffect(() => {
     const fetchMovieTrailer = async () => {
       try {
-        const data = await axios.get(`https://api.themoviedb.org/3/movie/${id}?api_key=dfd3c55a40f798c4ac314d4aeaf609ea&append_to_response=videos`)
+        const API_URL = 'https://api.themoviedb.org/3'
+        const data = await axios.get(`${API_URL}/movie/${id}?api_key=${process.env.REACT_APP_MOVIE_API_KEY}&append_to_response=videos`)
         setMovieTrailer(data.data.videos.results[0].key)
       } catch (err) {
         console.log(err)

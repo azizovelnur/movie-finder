@@ -5,7 +5,8 @@ import axios from "axios";
 export const fetchSearchMovies = createAsyncThunk(
   'searchMovies/fetchSearchMovies',
   async (query, ThunkApi) => {
-    const searchData = await axios.get(`https://api.themoviedb.org/3/search/movie?api_key=dfd3c55a40f798c4ac314d4aeaf609ea&query=${query}`)
+    const API_URL = 'https://api.themoviedb.org/3'
+    const searchData = await axios.get(`${API_URL}/search/movie?api_key=${process.env.REACT_APP_MOVIE_API_KEY}&query=${query}`)
 
     if (searchData.data.results.length === 0) {
       return ThunkApi.rejectWithValue('error')

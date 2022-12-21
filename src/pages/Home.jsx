@@ -35,9 +35,6 @@ export const Home = () => {
 
   useEffect(() => {
     dispatch(fetchPopularMovies())
-  }, [])
-
-  useEffect(() => {
     dispatch(fetchTopRatedMovies())
   }, [])
 
