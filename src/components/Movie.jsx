@@ -5,7 +5,7 @@ import {ReactComponent as AddToWl} from '../assets/icons/favorite-add-icon.svg'
 import {ReactComponent as RemoveFromWl} from '../assets/icons/favorite-remove-icon.svg'
 import {Link} from "react-router-dom";
 
-export const Movie = ({id, poster_path, title, vote_average}) => {
+export const Movie = ({id, poster_path, title}) => {
 
 
   const {watchlist} = useSelector(state => state.watchList)
@@ -14,7 +14,7 @@ export const Movie = ({id, poster_path, title, vote_average}) => {
 
 
   const addItemToWatchList = () => {
-    dispatch(addItem({poster_path, title, vote_average, id}))
+    dispatch(addItem({poster_path, title, id}))
   }
 
   const removeWatchListItem = () => {

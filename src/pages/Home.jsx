@@ -3,7 +3,7 @@ import {Skeleton, SkeletonSlider} from "../components/Skeleton";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchSearchMovies} from "../redux/searchMoviesSlice";
 import { Movie } from "../components/Movie";
-import {fetchPopularMovies} from "../redux/popularMoviesSlice";
+import {fetchPopularMovies} from "../redux/popularMovies/popularMoviesSlice";
 import {Swiper, SwiperSlide} from "swiper/react";
 import {A11y, Navigation, Pagination, Autoplay} from "swiper";
 import {fetchTopRatedMovies} from "../redux/topRatedMoviesSlice";
