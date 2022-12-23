@@ -1,7 +1,7 @@
 import React, {useCallback, useEffect, useRef, useState} from 'react';
 import find from '../../assets/icons/find.svg'
 import {ReactComponent as DeleteTextInput} from '../../assets/icons/close-player.svg'
-import {setSearchValue} from "../../redux/searchMoviesSlice";
+import {setSearchValue} from "../../redux/searchMovies/searchMoviesSlice";
 import {useDispatch, useSelector} from "react-redux";
 import debounce from "lodash/debounce"
 import {SearchList} from "./SearchList/SearchList"

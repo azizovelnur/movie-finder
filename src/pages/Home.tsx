@@ -1,12 +1,12 @@
 import React, {useEffect} from 'react';
 import {Skeleton, SkeletonSlider} from "../components/Skeleton";
 import {useDispatch, useSelector} from "react-redux";
-import {fetchSearchMovies} from "../redux/searchMoviesSlice";
+import {fetchSearchMovies} from "../redux/searchMovies/searchMoviesSlice";
 import { Movie } from "../components/Movie";
 import {fetchPopularMovies} from "../redux/popularMovies/popularMoviesSlice";
 import {Swiper, SwiperSlide} from "swiper/react";
 import {A11y, Navigation, Pagination, Autoplay} from "swiper";
-import {fetchTopRatedMovies} from "../redux/topRatedMoviesSlice";
+import {fetchTopRatedMovies} from "../redux/topRatedMovies/topRatedMoviesSlice";
 import { MovieSlider } from "../components/MovieSlider";
 
 export const Home = () => {
