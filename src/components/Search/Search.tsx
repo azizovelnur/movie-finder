@@ -2,17 +2,18 @@ import React, {useCallback, useEffect, useRef, useState} from 'react';
 import find from '../../assets/icons/find.svg'
 import {ReactComponent as DeleteTextInput} from '../../assets/icons/close-player.svg'
 import {setSearchValue} from "../../redux/searchMovies/searchMoviesSlice";
-import {useDispatch, useSelector} from "react-redux";
+import {useSelector} from "react-redux";
 import debounce from "lodash/debounce"
 import {SearchList} from "./SearchList/SearchList"
 import {SkeletonSearchList} from "../Skeleton";
+import {RootState, useAppDispatch} from "../../redux/store";
 
 export const Search = () => {
-  const {searchMoviesData} = useSelector((state) => state.searchMovies)
+  const {searchMoviesData} = useSelector((state: RootState) => state.searchMovies)
 
-  const {status} = useSelector((state) => state.searchMovies)
+  const {status} = useSelector((state: RootState) => state.searchMovies)
   const [searchMovie, setSearchMovie] = useState('')
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
 
   const skeletonSearchList = [...new Array(20)].map((_, index) => <SkeletonSearchList key={index}/>)
 
@@ -25,16 +26,16 @@ export const Search = () => {
     []
   )
 
-  const onChangeInput = (event) => {
+  const onChangeInput = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchMovie(event.target.value)
     addSearchValue(event.target.value)
   }
 
-  const inputBlockRef = useRef()
+  const inputBlockRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (!event.composedPath().includes(inputBlockRef.current)) {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (inputBlockRef.current && !event.composedPath().includes(inputBlockRef.current)) {
         setSearchMovie('')
       }
     }

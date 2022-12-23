@@ -9,13 +9,28 @@ import {ReactComponent as AddToWl} from '../assets/icons/favorite-add-icon.svg'
 import {ReactComponent as RemoveFromWl} from '../assets/icons/favorite-remove-icon.svg'
 import {addItem, removeItem} from "../redux/watchlistSlice";
 import {useDispatch, useSelector} from "react-redux";
+import {RootState} from "../redux/store";
 
 export const FullMovie = () => {
 
-  const [fullMovie, setFullMovie] = useState({})
+
+  interface IfullMovie {
+    id?: number
+    title?: string
+    poster_path?: string
+    backdrop_path?: string
+
+    release_date?: number
+    runtime?: number
+    vote_average?: number
+    overview?: string
+
+  }
+
+  const [fullMovie, setFullMovie] = useState<IfullMovie>({})
   const [movieTrailer, setMovieTrailer] = useState('')
   const [playerTrailer, setPlayerTrailer] = useState(false)
-  const {watchlist} = useSelector(state => state.watchList)
+  const {watchlist} = useSelector(( state: RootState ) => state.watchList)
 
   const {id} = useParams()
 
@@ -26,7 +41,7 @@ export const FullMovie = () => {
     const fetchFullMovie = async () => {
       try {
 
-        const API_URL = 'https://api.themoviedb.org/3'
+        const API_URL: string = 'https://api.themoviedb.org/3'
         const fullMovieData = await axios.get(`${API_URL}/movie/${id}`, {
           params: {
             api_key: process.env.REACT_APP_MOVIE_API_KEY

@@ -1,8 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit'
-import searchMovies from './searchMoviesSlice'
+import searchMovies from './searchMovies/searchMoviesSlice'
 import watchList from './watchlistSlice'
 import popularMovie from './popularMovies/popularMoviesSlice'
-import topRatedMovies from "./topRatedMoviesSlice"
+import topRatedMovies from "./topRatedMovies/topRatedMoviesSlice"
+import {useDispatch} from "react-redux";
 
 export const store = configureStore({
   reducer: {
@@ -15,4 +16,5 @@ export const store = configureStore({
 
 export type RootState = ReturnType<typeof store.getState>
 
-
+export type AppDispatch = typeof store.dispatch
+export const useAppDispatch = () => useDispatch<AppDispatch>()

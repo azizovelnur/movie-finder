@@ -4,11 +4,19 @@ import {addItem, removeItem} from "../redux/watchlistSlice";
 import {ReactComponent as AddToWl} from '../assets/icons/favorite-add-icon.svg'
 import {ReactComponent as RemoveFromWl} from '../assets/icons/favorite-remove-icon.svg'
 import {Link} from "react-router-dom";
+import {RootState} from "../redux/store";
 
-export const Movie = ({id, poster_path, title}) => {
+
+type TMovie = {
+    id: number,
+    title: string,
+    poster_path: string
+  }
+
+export const Movie = ({id, poster_path, title}: TMovie) => {
 
 
-  const {watchlist} = useSelector(state => state.watchList)
+  const {watchlist} = useSelector(( state: RootState ) => state.watchList)
 
   const dispatch = useDispatch()
 

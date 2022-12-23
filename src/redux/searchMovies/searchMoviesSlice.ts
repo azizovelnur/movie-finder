@@ -1,21 +1,25 @@
-import {createSlice, createAsyncThunk} from "@reduxjs/toolkit";
+import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import axios from "axios";
+import {AxiosISearchMovies, ISearchMovies, TSearchMovies} from './types'
 
 
-export const fetchSearchMovies = createAsyncThunk(
+
+// type Tquery = Record<string, string>
+export const fetchSearchMovies = createAsyncThunk<TSearchMovies[], void>(
   'searchMovies/fetchSearchMovies',
   async (query, ThunkApi) => {
-    const API_URL = 'https://api.themoviedb.org/3'
-    const searchData = await axios.get(`${API_URL}/search/movie?api_key=${process.env.REACT_APP_MOVIE_API_KEY}&query=${query}`)
+    const API_URL:string = 'https://api.themoviedb.org/3'
+    const {data} = await axios.get<AxiosISearchMovies>(`${API_URL}/search/movie?api_key=${process.env.REACT_APP_MOVIE_API_KEY}&query=${query}`)
 
-    if (searchData.data.results.length === 0) {
+
+    if (data.results.length === 0) {
       return ThunkApi.rejectWithValue('error')
     }
-    return ThunkApi.fulfillWithValue(searchData.data.results)
+    return ThunkApi.fulfillWithValue(data.results)
   })
 
 
-const initialState = {
+const initialState: ISearchMovies = {
   searchMoviesData: [],
   searchValue: '',
   status: ''

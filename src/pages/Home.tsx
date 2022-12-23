@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import {Skeleton, SkeletonSlider} from "../components/Skeleton";
-import {useDispatch, useSelector} from "react-redux";
+import {useSelector} from "react-redux";
 import {fetchSearchMovies} from "../redux/searchMovies/searchMoviesSlice";
 import { Movie } from "../components/Movie";
 import {fetchPopularMovies} from "../redux/popularMovies/popularMoviesSlice";
@@ -8,12 +8,13 @@ import {Swiper, SwiperSlide} from "swiper/react";
 import {A11y, Navigation, Pagination, Autoplay} from "swiper";
 import {fetchTopRatedMovies} from "../redux/topRatedMovies/topRatedMoviesSlice";
 import { MovieSlider } from "../components/MovieSlider";
+import {RootState, useAppDispatch} from "../redux/store";
 
 export const Home = () => {
-  const dispatch = useDispatch()
-  const {searchValue} = useSelector((state) => state.searchMovies)
-  const {popularMovies, popularMoviesStatus} = useSelector((state) => state.popularMovie)
-  const {topRatedMoviesData, status} = useSelector((state) => state.topRatedMovies)
+  const dispatch = useAppDispatch()
+  const {searchValue} = useSelector((state: RootState) => state.searchMovies)
+  const {popularMovies, popularMoviesStatus} = useSelector((state: RootState) => state.popularMovie)
+  const {topRatedMoviesData, status} = useSelector((state: RootState) => state.topRatedMovies)
 
 
   const skeletons = [...new Array(20)].map((_, index) => <Skeleton key={index}/>)
@@ -22,13 +23,13 @@ export const Home = () => {
 
   const pMovies = popularMovies.map((obj) =>
     <SwiperSlide key={obj.id}>
-      <MovieSlider obj={obj}/>
+      <MovieSlider {...obj}/>
     </SwiperSlide>
   )
 
-
   useEffect(() => {
     if (searchValue !== '') {
+      // @ts-ignore
       dispatch(fetchSearchMovies(searchValue))
     }
   }, [searchValue])

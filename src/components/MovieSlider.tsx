@@ -5,7 +5,13 @@ import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 import {Link} from "react-router-dom";
 
-export const MovieSlider = ({obj}) => {
+type TMovieSlider = {
+  id: number
+  title: string
+  backdrop_path: string
+}
+
+export const MovieSlider = (obj: TMovieSlider) => {
   return (
     <Link to={`movie/${obj.id}`}>
       <div className={'sm:h-[470px] text-white w-full h-[260px]'}>
