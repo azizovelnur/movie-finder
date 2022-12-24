@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {FC} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {addItem, removeItem} from "../redux/watchlistSlice";
 import {ReactComponent as AddToWl} from '../assets/icons/favorite-add-icon.svg'
@@ -13,7 +13,7 @@ type TMovie = {
     poster_path: string
   }
 
-export const Movie = ({id, poster_path, title}: TMovie) => {
+export const Movie: FC<TMovie> = ({id, poster_path, title}) => {
 
 
   const {watchlist} = useSelector(( state: RootState ) => state.watchList)
@@ -28,9 +28,6 @@ export const Movie = ({id, poster_path, title}: TMovie) => {
   const removeWatchListItem = () => {
     dispatch(removeItem(id))
   }
-
-
-  // const titleUrl = title.replace(/\s/g, '-')
 
 
   return (

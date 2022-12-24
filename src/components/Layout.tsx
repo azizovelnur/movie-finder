@@ -1,8 +1,8 @@
-import React from 'react';
+import React, {FC} from 'react';
 import { Header } from "./Header";
 import {Outlet} from "react-router-dom";
 
-export const Layout = () => {
+export const Layout: FC = () => {
   return (
     <>
       <Header/>

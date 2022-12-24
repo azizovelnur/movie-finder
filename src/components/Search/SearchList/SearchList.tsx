@@ -1,14 +1,14 @@
-import React from 'react'
+import React, {FC} from 'react'
 import {Link} from "react-router-dom"
 import {ReactComponent as NoImageFullMovie} from '../../../assets/icons/no-image-fullmovie.svg'
-
 
 type TsearchListProps = {
   id: number,
   poster_path: string,
   title: string
 }
-export const SearchList = ({id, poster_path, title}: TsearchListProps) => {
+
+export const SearchList: FC<TsearchListProps> = ({id, poster_path, title}) => {
   return (
     <Link className={'no-underline'} to={`movie/${id}`}>
       <div className={'flex justify-between items-center m-[10px] cursor-pointer text-[14px] bg-[#181717] hover:bg-[#000]'}>

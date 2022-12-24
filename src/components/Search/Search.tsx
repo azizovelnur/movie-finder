@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useRef, useState} from 'react';
+import React, {FC, useCallback, useEffect, useRef, useState} from 'react';
 import find from '../../assets/icons/find.svg'
 import {ReactComponent as DeleteTextInput} from '../../assets/icons/close-player.svg'
 import {setSearchValue} from "../../redux/searchMovies/searchMoviesSlice";
@@ -8,9 +8,8 @@ import {SearchList} from "./SearchList/SearchList"
 import {SkeletonSearchList} from "../Skeleton";
 import {RootState, useAppDispatch} from "../../redux/store";
 
-export const Search = () => {
+export const Search: FC = () => {
   const {searchMoviesData} = useSelector((state: RootState) => state.searchMovies)
-
   const {status} = useSelector((state: RootState) => state.searchMovies)
   const [searchMovie, setSearchMovie] = useState('')
   const dispatch = useAppDispatch()

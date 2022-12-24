@@ -1,12 +1,11 @@
 import axios from "axios";
 import {createSlice, createAsyncThunk} from "@reduxjs/toolkit";
 import {TpopularMovies, IpopularMovies, AxiosIpopularMovies, Status} from './types'
-
+import {API_URL} from "../../utils/variables";
 
 export const fetchPopularMovies = createAsyncThunk<TpopularMovies[]>(
   'movie/fetchPopularMovies',
   async () => {
-    const API_URL:string = 'https://api.themoviedb.org/3'
     const { data } = await axios.get<AxiosIpopularMovies>(`${API_URL}/movie/popular`, {
       params: {
         api_key: process.env.REACT_APP_MOVIE_API_KEY
@@ -31,7 +30,6 @@ const popularMovieSlice = createSlice({
   },
 
   extraReducers: (builder) => {
-
     builder.addCase(fetchPopularMovies.pending, (state) => {
       state.popularMoviesStatus = Status.LOADING
     })

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {FC} from 'react';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
@@ -11,7 +11,7 @@ type TMovieSlider = {
   backdrop_path: string
 }
 
-export const MovieSlider = (obj: TMovieSlider) => {
+export const MovieSlider: FC<TMovieSlider> = (obj) => {
   return (
     <Link to={`movie/${obj.id}`}>
       <div className={'sm:h-[470px] text-white w-full h-[260px]'}>

@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {FC, useEffect} from 'react';
 import {Skeleton, SkeletonSlider} from "../components/Skeleton";
 import {useSelector} from "react-redux";
 import {fetchSearchMovies} from "../redux/searchMovies/searchMoviesSlice";
@@ -10,7 +10,7 @@ import {fetchTopRatedMovies} from "../redux/topRatedMovies/topRatedMoviesSlice";
 import { MovieSlider } from "../components/MovieSlider";
 import {RootState, useAppDispatch} from "../redux/store";
 
-export const Home = () => {
+export const Home: FC = () => {
   const dispatch = useAppDispatch()
   const {searchValue} = useSelector((state: RootState) => state.searchMovies)
   const {popularMovies, popularMoviesStatus} = useSelector((state: RootState) => state.popularMovie)

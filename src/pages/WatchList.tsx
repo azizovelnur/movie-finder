@@ -1,16 +1,12 @@
-import React from 'react';
+import React, {FC} from 'react';
 import {useSelector} from "react-redux";
 import { Movie } from "../components/Movie";
 import {RootState} from "../redux/store";
 
-export const WatchList = () => {
-
+export const WatchList: FC = () => {
 
   const {watchlist} = useSelector((state: RootState) => state.watchList)
-  console.log(watchlist)
-
   const watchListItem = watchlist.map((item) => <Movie key={item.id} {...item}/>)
-
 
   return (
     <section>

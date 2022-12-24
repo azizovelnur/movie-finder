@@ -1,12 +1,12 @@
 import {createSlice, createAsyncThunk} from "@reduxjs/toolkit";
 import axios from "axios";
 import {AxiosItopRatedMovies, TtopRatedMovies, ItopRatedMovies, Status} from "./types";
+import {API_URL} from "../../utils/variables";
 
 
 export const fetchTopRatedMovies = createAsyncThunk<TtopRatedMovies[]>(
   'movie/fetchTopRatedMovies',
   async () => {
-    const API_URL = 'https://api.themoviedb.org/3'
     const { data } = await axios.get<AxiosItopRatedMovies>(`${API_URL}/movie/top_rated`, {
       params: {
         api_key: process.env.REACT_APP_MOVIE_API_KEY

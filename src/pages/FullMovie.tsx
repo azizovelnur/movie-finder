@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, {FC, useEffect, useState} from 'react'
 import axios from "axios";
 import {useParams} from "react-router-dom";
 import YouTube from "react-youtube";
@@ -10,8 +10,9 @@ import {ReactComponent as RemoveFromWl} from '../assets/icons/favorite-remove-ic
 import {addItem, removeItem} from "../redux/watchlistSlice";
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../redux/store";
+import {API_URL} from "../utils/variables";
 
-export const FullMovie = () => {
+export const FullMovie: FC = () => {
 
 
   interface IfullMovie {
@@ -24,8 +25,18 @@ export const FullMovie = () => {
     runtime?: number
     vote_average?: number
     overview?: string
-
   }
+
+  interface TTTfullMovie {
+    videos: TResult
+  }
+  type Tvideos = {
+    key: string
+  }
+  type TResult = {
+    results : Tvideos[]
+  }
+
 
   const [fullMovie, setFullMovie] = useState<IfullMovie>({})
   const [movieTrailer, setMovieTrailer] = useState('')
@@ -40,14 +51,12 @@ export const FullMovie = () => {
   useEffect(() => {
     const fetchFullMovie = async () => {
       try {
-
-        const API_URL: string = 'https://api.themoviedb.org/3'
-        const fullMovieData = await axios.get(`${API_URL}/movie/${id}`, {
+        const {data} = await axios.get<IfullMovie>(`${API_URL}/movie/${id}`, {
           params: {
             api_key: process.env.REACT_APP_MOVIE_API_KEY
           }
         })
-        setFullMovie(fullMovieData.data)
+        setFullMovie(data)
       } catch (err) {
         console.log(err)
       }
@@ -60,9 +69,9 @@ export const FullMovie = () => {
   useEffect(() => {
     const fetchMovieTrailer = async () => {
       try {
-        const API_URL = 'https://api.themoviedb.org/3'
-        const data = await axios.get(`${API_URL}/movie/${id}?api_key=${process.env.REACT_APP_MOVIE_API_KEY}&append_to_response=videos`)
-        setMovieTrailer(data.data.videos.results[0].key)
+        const { data } = await axios.get<TTTfullMovie>(`${API_URL}/movie/${id}?api_key=${process.env.REACT_APP_MOVIE_API_KEY}&append_to_response=videos`)
+        console.log(data)
+        setMovieTrailer(data.videos.results[0].key)
       } catch (err) {
         console.log(err)
       }
@@ -100,7 +109,7 @@ export const FullMovie = () => {
 
 
     <section
-      className={playerTrailer === true ? "after:absolute after:bg-[#000]  after:inset-0 after:opacity-100 after:rounded-[20px] relative flex flex-col lg:flex-row lg:text-start text-center items-center my-[30px] h-full lg:h-[600px] rounded-[20px] isolate bg-black"
+      className={ playerTrailer ? "after:absolute after:bg-[#000]  after:inset-0 after:opacity-100 after:rounded-[20px] relative flex flex-col lg:flex-row lg:text-start text-center items-center my-[30px] h-full lg:h-[600px] rounded-[20px] isolate bg-black"
         : "after:absolute after:bg-[#3a3734] after:z-[-1] after:inset-0 after:opacity-90 after:rounded-[20px] relative flex flex-col lg:flex-row lg:text-start text-center items-center my-[30px] h-full lg:h-[600px] rounded-[20px] isolate"}
       style={{backgroundImage: `url(https://image.tmdb.org/t/p/w1280/${fullMovie.backdrop_path})`}}
     >
