@@ -1,21 +1,20 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import axios from "axios";
-import {AxiosISearchMovies, ISearchMovies, TSearchMovies} from './types'
+import {AxiosISearchMovies, ISearchMovies, Status, TSearchMovies} from './types'
 import {API_URL} from "../../utils/variables";
 
 
-
-// type Tquery = Record<string, string>
-export const fetchSearchMovies = createAsyncThunk<TSearchMovies[], void>(
+export const fetchSearchMovies = createAsyncThunk<TSearchMovies[], string, {rejectValue: string}>(
   'searchMovies/fetchSearchMovies',
-  async (query, ThunkApi) => {
+  async (query, {rejectWithValue}) => {
     const {data} = await axios.get<AxiosISearchMovies>(`${API_URL}/search/movie?api_key=${process.env.REACT_APP_MOVIE_API_KEY}&query=${query}`)
-
+    console.log(data)
+    console.log(data.results)
 
     if (data.results.length === 0) {
-      return ThunkApi.rejectWithValue('error')
+      return rejectWithValue(Status.ERROR)
     }
-    return ThunkApi.fulfillWithValue(data.results)
+    return data.results
   })
 
 
@@ -38,11 +37,11 @@ const searchMoviesSlice = createSlice({
   extraReducers: (builder) => {
 
     builder.addCase(fetchSearchMovies.pending, (state) => {
-      state.status = 'loading'
+      state.status = Status.LOADING
     })
 
     builder.addCase(fetchSearchMovies.fulfilled, (state, action) => {
-      state.status = 'loaded'
+      state.status = Status.LOADED
       state.searchMoviesData = action.payload
     })
 

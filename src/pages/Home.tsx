@@ -29,7 +29,6 @@ export const Home: FC = () => {
 
   useEffect(() => {
     if (searchValue !== '') {
-      // @ts-ignore
       dispatch(fetchSearchMovies(searchValue))
     }
   }, [searchValue])

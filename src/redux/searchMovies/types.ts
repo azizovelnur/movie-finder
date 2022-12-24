@@ -10,12 +10,12 @@ export interface AxiosISearchMovies {
 export interface ISearchMovies {
   searchMoviesData: TSearchMovies[],
   searchValue: string
-  status: string | any
+  status: string | undefined
 }
 
 
-// export enum Status {
-//   LOADING = 'loading',
-//   LOADED = 'loaded',
-//   ERROR = 'error',
-// }
+export enum Status {
+  LOADING = 'loading',
+  LOADED = 'loaded',
+  ERROR = 'error',
+}
