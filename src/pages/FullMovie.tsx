@@ -161,8 +161,9 @@ export const FullMovie: FC = () => {
             </button>
 
             <button
-              className={playerTrailer ? 'z-50 absolute top-[4px] bg-indigo-500 right-[4px] block cursor-pointer rounded-[4px] bg-none border-none' : 'hidden'}
-              onClick={() => setPlayerTrailer(false)}><ClosePlayerIcon className={'fill-white cursor-pointer'} height={40} width={40}/>
+              className={playerTrailer ? 'z-50 absolute top-[6px] bg-[#1e1e1e] cursor-pointer right-[6px] block cursor-pointer rounded-[4px] bg-none border-none' : 'hidden'}
+              onClick={() => setPlayerTrailer(false)}>
+              <ClosePlayerIcon className={'fill-white cursor-pointer h-[64px] w-[64px] opacity-50'}/>
             </button>
 
             {
