@@ -1,6 +1,6 @@
 import {createSlice} from "@reduxjs/toolkit";
-import {getDataFromLocalStorage} from "../utils/getDataFromLocalStorage";
-import {addToLocalStorage} from "../utils/addToLocalStorage";
+import {getDataFromLocalStorage} from "../../utils/getDataFromLocalStorage";
+import {addToLocalStorage} from "../../utils/addToLocalStorage";
 
 const initialState = {
   watchlist: getDataFromLocalStorage()

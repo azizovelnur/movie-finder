@@ -7,7 +7,7 @@ import {ReactComponent as OpenPlayerIcon} from '../assets/icons/open-player.svg'
 import {ReactComponent as NoImageFullMovie} from '../assets/icons/no-image-fullmovie.svg'
 import {ReactComponent as AddToWl} from '../assets/icons/favorite-add-icon.svg'
 import {ReactComponent as RemoveFromWl} from '../assets/icons/favorite-remove-icon.svg'
-import {addItem, removeItem} from "../redux/watchlistSlice";
+import {addItem, removeItem} from "../redux/watchListMovies/watchlistSlice";
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../redux/store";
 import {API_URL} from "../utils/variables";
@@ -118,7 +118,6 @@ export const FullMovie: FC = () => {
           playerTrailer && watchTrailer()
         }
 
-      {/*<div className={'lg:flex-row lg:text-start flex justify-between flex-col items-center text-center mx-[30px]'}>*/}
 
         <div>
 
@@ -183,7 +182,6 @@ export const FullMovie: FC = () => {
 
         </div>
 
-      {/*</div>*/}
 
     </section>
 

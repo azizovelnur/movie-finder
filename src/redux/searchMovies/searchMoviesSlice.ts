@@ -8,8 +8,6 @@ export const fetchSearchMovies = createAsyncThunk<TSearchMovies[], string, {reje
   'searchMovies/fetchSearchMovies',
   async (query, {rejectWithValue}) => {
     const {data} = await axios.get<AxiosISearchMovies>(`${API_URL}/search/movie?api_key=${process.env.REACT_APP_MOVIE_API_KEY}&query=${query}`)
-    console.log(data)
-    console.log(data.results)
 
     if (data.results.length === 0) {
       return rejectWithValue(Status.ERROR)

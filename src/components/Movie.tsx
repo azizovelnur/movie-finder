@@ -1,6 +1,6 @@
 import React, {FC} from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import {addItem, removeItem} from "../redux/watchlistSlice";
+import {addItem, removeItem} from "../redux/watchListMovies/watchlistSlice";
 import {ReactComponent as AddToWl} from '../assets/icons/favorite-add-icon.svg'
 import {ReactComponent as RemoveFromWl} from '../assets/icons/favorite-remove-icon.svg'
 import {Link} from "react-router-dom";
@@ -45,8 +45,6 @@ export const Movie: FC<TMovie> = ({id, poster_path, title}) => {
 
       </Link>
       <div className={'overflow-hidden overflow-ellipsis whitespace-nowrap text-[14px] mt-1 font-[500]'}>{title}</div>
-
-      {/*<div className={'absolute text-center w-[40px] h-[40px] rounded-full bg-indigo-500 right-[4px] top-[4px]'}>{vote_average}</div>*/}
 
 
       {

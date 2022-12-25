@@ -51,7 +51,6 @@ export const Home: FC = () => {
           navigation
           loop={true}
           autoplay={true}
-          // pagination={{clickable: true}}
         >
 
           {
