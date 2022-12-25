@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/movie-finder/static/css/main.5e885c9c.css",
-    "main.js": "/movie-finder/static/js/main.c4aee23a.js",
+    "main.js": "/movie-finder/static/js/main.c1cc0ff3.js",
     "static/media/movie-icon.svg": "/movie-finder/static/media/movie-icon.6c8c6c5e7fe6a29fe8fe5e62a271c150.svg",
     "static/media/favorite-add-icon.svg": "/movie-finder/static/media/favorite-add-icon.8910d4bb3aab3249fb948d3241d0475a.svg",
     "static/media/favorite-remove-icon.svg": "/movie-finder/static/media/favorite-remove-icon.aa6fd5455e0993726956cf6934db1dbe.svg",
@@ -12,10 +12,10 @@
     "static/media/open-player.svg": "/movie-finder/static/media/open-player.2f089015499979ff03de843f3190006a.svg",
     "static/media/find.svg": "/movie-finder/static/media/find.7bfb7c75df0e6c25ebb6fe2ae652cc81.svg",
     "main.5e885c9c.css.map": "/movie-finder/static/css/main.5e885c9c.css.map",
-    "main.c4aee23a.js.map": "/movie-finder/static/js/main.c4aee23a.js.map"
+    "main.c1cc0ff3.js.map": "/movie-finder/static/js/main.c1cc0ff3.js.map"
   },
   "entrypoints": [
     "static/css/main.5e885c9c.css",
-    "static/js/main.c4aee23a.js"
+    "static/js/main.c1cc0ff3.js"
   ]
 }
