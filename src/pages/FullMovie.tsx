@@ -12,7 +12,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../redux/store";
 import {API_URL} from "../utils/variables";
 
-export const FullMovie: FC = () => {
+const FullMovie: FC = () => {
 
 
   interface IfullMovie {
@@ -187,3 +187,6 @@ export const FullMovie: FC = () => {
 
   )
 }
+
+//react lazy
+export default FullMovie

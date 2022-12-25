@@ -3,7 +3,7 @@ import {useSelector} from "react-redux";
 import { Movie } from "../components/Movie";
 import {RootState} from "../redux/store";
 
-export const WatchList: FC = () => {
+const WatchList: FC = () => {
 
   const {watchlist} = useSelector((state: RootState) => state.watchList)
   const watchListItem = watchlist.map((item) => <Movie key={item.id} {...item}/>)
@@ -18,3 +18,6 @@ export const WatchList: FC = () => {
     </section>
   )
 }
+
+//export default react lazy
+export default WatchList
